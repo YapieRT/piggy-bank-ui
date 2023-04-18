@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import App from './App';
+import App from './App';
 import { Header } from './App';
-import App from './components/app/app';
 //import reportWebVitals from './reportWebVitals';
 
 /* const test = React.createElement('h2', { className: 'greetings' }, 'Hello World'); */
@@ -17,6 +16,7 @@ const test = (
     <button tabIndex="0">Click</button>
   </div>
 );
+
 /* const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
