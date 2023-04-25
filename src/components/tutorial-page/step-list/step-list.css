@@ -1,0 +1,10 @@
+.step-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px;
+    margin: 20px;
+    height: auto;
+}

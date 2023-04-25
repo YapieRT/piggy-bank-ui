@@ -1,0 +1,16 @@
+.security-list-item {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    font-weight: 400;
+    font-size: 17px;
+    color: #92669A;
+    list-style: none;
+}
+
+.security-list-item::before {
+    content: '\2022';
+    font-size: 38px;
+    line-height: 1;
+    margin-right: 10px;
+}

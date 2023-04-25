@@ -1,0 +1,28 @@
+.step-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100%;
+    padding: 20px;
+    background: #FDF3FF;
+    border-radius: 15px;
+    text-align: center;
+    margin: 15px;
+    overflow: hidden;
+}
+
+.step-item .step {
+    font-weight: 600;
+    font-size: 24px;
+    color: #5D3D63;
+    margin-bottom: 5px;
+}
+
+.step-item .descr {
+    font-weight: 400;
+    font-size: 16px;
+    color: #835B8A;
+    word-break: break-word;
+}

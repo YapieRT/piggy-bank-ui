@@ -1,0 +1,32 @@
+.contacts-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.contacts-page .info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 70px 0;
+    width: 475px;
+    /*    margin: 0 auto; */
+}
+
+.contacts-page .info .title,
+.contacts-page .info .descr {
+    color: #5D3D63;
+}
+
+.contacts-page .info .title {
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.contacts-page .info .descr {
+    font-weight: 400;
+    font-size: 24px;
+}

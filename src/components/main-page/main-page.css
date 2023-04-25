@@ -1,0 +1,76 @@
+* {
+    font-family: 'Livvic' sans-serif;
+}
+
+.main {
+    background-color: #FDF3FF;
+    padding: 40px;
+}
+
+.main .title,
+.main .subtitle,
+.main .descr {
+    font-weight: 600;
+    font-size: 32px;
+    color: #5D3D63;
+    margin: 0px;
+}
+
+.main .subtitle {
+    font-size: 24px;
+}
+
+.main .descr {
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px 0;
+    width: 100%
+}
+
+
+.info .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.info .buttons .phone,
+.info .buttons .download {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    color: #764B7D;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.info .buttons .phone {
+    width: 250px;
+    background: #FFFFFF;
+}
+
+.info .buttons .download {
+    width: 200px;
+    background: #E8B8F0;
+    text-decoration: none;
+}
+
+.info .buttons .download:hover {
+    background: #F9D3FF;
+}

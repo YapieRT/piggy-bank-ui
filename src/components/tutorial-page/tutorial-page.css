@@ -1,0 +1,64 @@
+.tutorial {
+    display: block;
+    background: #FFFFFF;
+    height: 100%;
+}
+
+.tutorial .title {
+    padding: 30px;
+    text-transform: capitalize;
+    text-align: center;
+
+    font-weight: 600;
+    font-size: 32px;
+    color: #5D3D63;
+}
+
+.security {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: auto;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 60px;
+}
+
+.tutorial .security .title,
+.tutorial .security .subtitle {
+    padding: 0;
+    margin: 5px;
+    font-weight: 600;
+    text-align: left;
+    color: #67496D;
+}
+
+.tutorial .security .title {
+    font-size: 36px;
+    text-transform: capitalize;
+}
+
+.tutorial .security .subtitle {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.tutorial .security .start_btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    color: #764B7D;
+    padding: 10px;
+    transition: 0.3s;
+    width: 200px;
+    background: #E8B8F0;
+    text-decoration: none;
+}

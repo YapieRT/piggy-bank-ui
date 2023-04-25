@@ -1,0 +1,49 @@
+.contacts-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contacts-list-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    margin: 25px;
+    height: 100%;
+    transition: all 0.15s ease-out;
+}
+
+.contacts-list-item:hover {
+    transform: translateY(-10px);
+}
+
+.contacts-list-item .icon {
+    height: 64px;
+    width: 64px;
+}
+
+.contacts-list-item .title {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px) scale(0);
+    overflow: hidden;
+    width: 100px;
+    text-align: center;
+    background: #92669A;
+    border-radius: 9px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #E3C6E8;
+    padding: 5px 10px;
+    transition: all 0.15s ease-out;
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+
+.contacts-list-item:hover .title {
+    transform: translateX(-50%) translateY(0) scale(1);
+}
