@@ -1,9 +1,3 @@
-.contacts-list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 .contacts-list-item {
     position: relative;
     display: flex;

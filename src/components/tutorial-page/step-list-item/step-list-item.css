@@ -1,28 +1,78 @@
-.step-item {
+.card {
+    background: #FDF3FF;
+    border: none;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
+    margin: 20px 30px;
+    max-width: 300px;
+    min-width: 250px;
+    text-align: left;
+    padding: 15px;
+    align-items: center;
+}
+
+.card-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.card-title {
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 100%;
-    padding: 20px;
-    background: #FDF3FF;
-    border-radius: 15px;
     text-align: center;
-    margin: 15px;
-    overflow: hidden;
 }
 
-.step-item .step {
-    font-weight: 600;
+.card-title .title-arrow,
+.card-title .title {
     font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
     color: #5D3D63;
-    margin-bottom: 5px;
 }
 
-.step-item .descr {
+.card-title .title-arrow {
+    display: block;
+    transition: all 0.4s ease-in-out;
+    margin-left: 5px;
+}
+
+.card-description {
+    padding: 0 15px 0;
     font-weight: 400;
     font-size: 16px;
+    text-align: center;
     color: #835B8A;
-    word-break: break-word;
+
+}
+
+.card-flap {
+    width: 100%;
+    flex-grow: 1;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+    transition: all 0.4s ease-in-out;
+}
+
+.card.show {
+    display: block;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card.show .card-flap {
+    transition: all 0.7s ease-in-out;
+    transform: rotateX(0deg);
+}
+
+.card.show .title-arrow {
+    transform: rotate(-180deg);
+    transition: all 0.4s ease-in-out;
 }

@@ -31,7 +31,7 @@ class Tutorial extends React.Component {
         const text_container_subtitle = "Transaction anywhere, anytime"
         const text_container_title = "We care about your account security"
         return (<>
-            <div className="tutorial">
+            <div className="tutorial" id="tutorial">
                 <h2 className="title">{title}</h2>
                 <StepList
                     data={data} />

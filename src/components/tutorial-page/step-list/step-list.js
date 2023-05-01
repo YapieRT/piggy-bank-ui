@@ -14,6 +14,7 @@ const StepList = ({ data }) => {
         <ul className="step-list">
             {steps}
         </ul>
+
     )
 
 }

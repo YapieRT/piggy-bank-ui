@@ -1,0 +1,41 @@
+.info-page {
+    padding: 30px;
+}
+
+.info-page .title,
+.info-page .subtitle {
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+    color: #5D3D63;
+}
+
+.info-page .title {
+    font-size: 32px;
+}
+
+.info-page .subtitle {
+    font-size: 20px;
+    max-width: 100vh;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 769px) {
+    .info-page .title {
+        font-size: 28px;
+    }
+
+    .info-page .subtitle {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .info-page .title {
+        font-size: 24px;
+    }
+
+    .info-page .subtitle {
+        font-size: 16px;
+    }
+}

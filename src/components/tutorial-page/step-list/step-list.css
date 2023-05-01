@@ -4,7 +4,13 @@
     align-items: stretch;
     flex-direction: row;
     justify-content: center;
-    padding: 30px;
-    margin: 20px;
-    height: auto;
+    margin: 0;
+    padding: 0;
 }
+
+/* @media screen and (max-width: 425px) {
+    .step-list {
+        margin: 0;
+        padding: 0;
+    }
+} */

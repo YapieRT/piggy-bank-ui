@@ -13,7 +13,7 @@
     font-weight: 600;
     font-size: 32px;
     color: #5D3D63;
-    margin: 0px;
+    margin: 0px auto;
 }
 
 .main .subtitle {
@@ -31,7 +31,12 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 40px 0;
-    width: 100%
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.info img {
+    max-width: 100%;
 }
 
 
@@ -40,6 +45,7 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 20px;
+    max-width: 100%;
 }
 
 .info .buttons .phone,
@@ -61,16 +67,80 @@
 }
 
 .info .buttons .phone {
-    width: 250px;
+    width: 200px;
     background: #FFFFFF;
 }
 
 .info .buttons .download {
-    width: 200px;
+    width: 150px;
     background: #E8B8F0;
     text-decoration: none;
 }
 
 .info .buttons .download:hover {
     background: #F9D3FF;
+}
+
+/* media */
+
+@media screen and (max-width: 1023px) {
+
+    .main .title,
+    .main .subtitle {
+        text-align: center;
+    }
+
+    .info {
+        padding: 25px 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main .descr {
+        padding: 30px 40px;
+        text-align: center;
+    }
+
+    .info .buttons {
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .info img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .info .buttons {
+        flex-direction: column;
+    }
+
+    .info .buttons .phone,
+    .info .buttons .download {
+        margin: 10px;
+        width: 250px;
+    }
+
+    .main .descr {
+        padding: 20px 20px 10px 20px;
+    }
+
+    .main .title {
+        font-size: 28px;
+    }
+
+    .main .subtitle {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .main {
+        padding: 10px;
+    }
 }

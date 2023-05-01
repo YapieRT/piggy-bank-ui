@@ -1,0 +1,16 @@
+.info-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*     margin: 0 340px; */
+    flex-wrap: wrap;
+    padding: 15px 30px;
+    max-width: 170vh;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 376px) {
+    .info-list {
+        padding: 15px 0;
+    }
+}

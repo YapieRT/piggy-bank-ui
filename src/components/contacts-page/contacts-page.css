@@ -1,19 +1,20 @@
 .contacts-page {
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: auto;
     width: 100%;
+    padding: 40px 30px;
 }
 
 .contacts-page .info {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin: 70px 0;
-    width: 475px;
-    /*    margin: 0 auto; */
+    margin: auto 0;
+    max-width: 55vh;
+    /* max-width: 30vw; */
 }
 
 .contacts-page .info .title,
@@ -29,4 +30,29 @@
 .contacts-page .info .descr {
     font-weight: 400;
     font-size: 24px;
+}
+
+@media screen and (max-width: 1023px) {
+    .contacts-page .info {
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+
+
+@media screen and (max-width: 655px) {
+    .contacts-page {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .contacts-page .info .title {
+        font-size: 24px;
+    }
+
+    .contacts-page .info .descr {
+        font-size: 16px;
+    }
 }

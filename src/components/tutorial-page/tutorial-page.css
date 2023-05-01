@@ -62,3 +62,33 @@
     background: #E8B8F0;
     text-decoration: none;
 }
+
+.tutorial .security .start_btn:hover {
+    background: #F9D3FF;
+}
+
+@media screen and (max-width: 426px) {
+    .tutorial .title {
+        font-size: 26px;
+        margin: 0;
+    }
+
+    .tutorial .security .title,
+    .tutorial .security .subtitle {
+        text-align: center;
+    }
+
+    .tutorial .security .start_btn {
+        margin: 10px auto;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .security {
+        padding: 30px;
+    }
+
+    .tutorial .security .title {
+        font-size: 28px;
+    }
+}

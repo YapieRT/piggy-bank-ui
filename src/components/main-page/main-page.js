@@ -1,7 +1,7 @@
 import React from 'react';
 import './main-page.css';
 import main_card from '../../img/main-page/main_card.png';
-
+import InputMask from 'react-input-mask';
 
 class Main extends React.Component {
     render() {
@@ -17,7 +17,14 @@ class Main extends React.Component {
                     <div className="info_block">
                         <h3 className="descr">{descr}</h3>
                         <div className="buttons">
-                            <input type="number" className="phone" placeholder='+380 (XX) XXX-XX-XX' />
+                            <InputMask
+                                mask="+38 (099) 999-99-99"
+                                /* placeholder="+38 (0__) ___-__-__" */
+                                maskChar=""
+                                placeholder="Input your number here"
+                                className='phone'
+                            />
+                            {/* <input type="number" className="phone" placeholder='+380 (XX) XXX-XX-XX' /> */}
                             <a href="#" className="download">Download</a>
                         </div></div>
 
