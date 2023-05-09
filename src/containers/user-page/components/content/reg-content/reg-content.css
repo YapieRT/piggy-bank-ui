@@ -1,0 +1,73 @@
+.registration-form {
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.step-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.step {
+  flex: 1;
+  height: 10px;
+  background-color: lightgray;
+  margin-right: 5px;
+}
+
+.step.active {
+  background-color: blue;
+}
+
+.step-content {
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.row label {
+  flex: 0 0 120px;
+  margin-right: 10px;
+}
+
+.row input {
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+input[type='text'],
+input[type='date'],
+input[type='tel'],
+input[type='email'],
+input[type='password'],
+button {
+  padding: 10px;
+
+  border: 1px solid #979797;
+  border-radius: 15px;
+}
+
+button {
+  background: #e666fb;
+  color: white;
+}
+
+.previous {
+  border: solid 2px #e666fb;
+  background-color: white;
+  color: #e666fb;
+}
