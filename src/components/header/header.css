@@ -68,6 +68,16 @@
   color: #dcb0e4;
 }
 
+.header .nav .buttons-container a {
+  text-decoration: none !important;
+}
+
+.header .nav .buttons-container a button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .burger-menu button {
   display: none;
 }

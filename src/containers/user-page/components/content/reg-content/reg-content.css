@@ -1,5 +1,5 @@
 .registration-form {
-  max-width: 600px;
+  max-width: 650px;
   height: auto;
   margin: 0 auto;
   padding: 20px;
@@ -30,21 +30,32 @@
 .row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 10px;
 }
 
+input,
+label {
+  display: flex;
+}
 .row label {
-  flex: 0 0 120px;
+  width: 120px;
+  text-align: right;
   margin-right: 10px;
 }
 
 .row input {
   flex: 1;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #979797;
+  border-radius: 15px;
 }
 
 .button-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 10px;
 }
@@ -55,10 +66,13 @@ input[type='tel'],
 input[type='email'],
 input[type='password'],
 button {
+  margin-top: 10px;
   padding: 10px;
-
+  width: 200px;
+  height: 40px;
   border: 1px solid #979797;
   border-radius: 15px;
+  box-sizing: border-box;
 }
 
 button {

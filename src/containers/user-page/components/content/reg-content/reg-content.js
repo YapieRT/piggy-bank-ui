@@ -56,49 +56,56 @@ const RegistrationContent = () => {
         {step === 2 && (
           <div className='step-content'>
             <div className='row'>
-              <label>First Name:</label>
-              <input
-                type='text'
-                name='firstName'
-                value={formData.firstName}
-                onChange={handleChange}
-                placeholder='First Name'
-                required
-              />
-              <label>Last Name:</label>
-              <input
-                type='text'
-                name='lastName'
-                value={formData.lastName}
-                onChange={handleChange}
-                placeholder='Last Name'
-                required
-              />
+              <div className='input-container'>
+                <label>First Name:</label>
+                <input
+                  type='text'
+                  name='firstName'
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder='First Name'
+                  required
+                />
+              </div>
+              <div className='input-container'>
+                <label>Last Name:</label>
+                <input
+                  type='text'
+                  name='lastName'
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder='Last Name'
+                  required
+                />
+              </div>
             </div>
             <div className='row'>
-              <label>Birth Date:</label>
-              <input
-                type='date'
-                name='birthDate'
-                value={formData.birthDate}
-                onChange={handleChange}
-                placeholder='Birth Date'
-                required
-              />
-              <label>Phone:</label>
-              <input
-                type='tel'
-                name='phone'
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder='Phone'
-                required
-              />
+              <div className='input-container'>
+                <label>Birth Date:</label>
+                <input
+                  type='date'
+                  name='birthDate'
+                  value={formData.birthDate}
+                  onChange={handleChange}
+                  placeholder='Birth Date'
+                  required
+                />
+              </div>
+              <div className='input-container'>
+                <label>Phone:</label>
+                <input
+                  type='tel'
+                  name='phone'
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder='Phone'
+                  required
+                />
+              </div>
             </div>
-
             <div className='row'>
-              <div className='address'>
-                <label>Adress:</label>
+              <div className='input-container'>
+                <label>Address:</label>
                 <input
                   type='text'
                   name='address'
@@ -110,7 +117,7 @@ const RegistrationContent = () => {
               </div>
             </div>
             <div className='row'>
-              <div className='address'>
+              <div className='input-container'>
                 <label>Email:</label>
                 <input
                   type='email'
@@ -123,24 +130,28 @@ const RegistrationContent = () => {
               </div>
             </div>
             <div className='row'>
-              <label>Password:</label>
-              <input
-                type='password'
-                name='password'
-                value={formData.password}
-                onChange={handleChange}
-                placeholder='Password'
-                required
-              />
-              <label>Confirm Password:</label>
-              <input
-                type='password'
-                name='confirmPassword'
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                placeholder='Confirm Password'
-                required
-              />
+              <div className='input-container'>
+                <label>Password:</label>
+                <input
+                  type='password'
+                  name='password'
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder='Password'
+                  required
+                />
+              </div>
+              <div className='input-container'>
+                <label>Confirm Password:</label>
+                <input
+                  type='password'
+                  name='confirmPassword'
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder='Confirm Password'
+                  required
+                />
+              </div>
             </div>
             <div className='button-container'>
               <button className='previous' type='button' onClick={handlePrevious}>

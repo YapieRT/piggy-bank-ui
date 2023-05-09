@@ -8,33 +8,31 @@ import Footer from '../../components/footer/footer';
 import './user-page.css';
 
 function UserPage() {
-    const location = useLocation();
-    const activeTab = location.hash || '#login';
+  const location = useLocation();
+  const activeTab = location.hash || '#login';
 
-    let activeContent;
-    switch (activeTab) {
-        case '#login':
-            activeContent = <LoginContent />;
-            break;
-        case '#signup':
-            activeContent = <RegistrationContent />;
-            break;
-        case '#profile':
-            activeContent = <ProfileContent />;
-            break;
-        default:
-            activeContent = <LoginContent />;
-            break;
-    }
-    return (
-        <>
-            <Header />
-            <div className="wrapper-user-content">
-                {activeContent}
-            </div>
-            <Footer />
-        </>
-    );
+  let activeContent;
+  switch (activeTab) {
+    case '#login':
+      activeContent = <LoginContent />;
+      break;
+    case '#signup':
+      activeContent = <RegistrationContent />;
+      break;
+    case '#profile':
+      activeContent = <ProfileContent />;
+      break;
+    default:
+      activeContent = <LoginContent />;
+      break;
+  }
+  return (
+    <>
+      <Header />
+      <div className='wrapper-user-content'>{activeContent}</div>
+      <Footer getStartedFlag={false} />
+    </>
+  );
 }
 
 export default UserPage;

@@ -31,10 +31,17 @@ const LoginContent = () => {
   };
   return (
     <div className='content'>
-      <h2>Login</h2>
+      <h2>Welcome Back!</h2>
+      <h4>Please fill in the form below:</h4>
       <form onSubmit={submitHandler}>
-        <input required type='text' placeholder='Email' onChange={emailChangeHandler} />
-        <input required type='password' placeholder='Password' onChange={passwordChangeHandler} />
+        <div className='input-container'>
+          <label>Email:</label>
+          <input required type='text' placeholder='Write text here...' onChange={emailChangeHandler} />
+        </div>
+        <div className='input-container'>
+          <label>Password:</label>
+          <input required type='password' placeholder='Write text here...' onChange={passwordChangeHandler} />
+        </div>
         <p>{loginStatus}</p>
         <button className='loginButton' type='submit'>
           Log In

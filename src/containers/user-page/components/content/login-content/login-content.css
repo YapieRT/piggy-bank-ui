@@ -1,4 +1,50 @@
-.loginButton {
-  background: #e666fb;
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+.content h2,
+.content h4 {
+  color: #764b7d;
+  font-family: 'Livvic';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.content h4 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+form {
+  font-family: 'Livvic';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form .input-container input {
+  width: 400px;
+  height: 35px;
+}
+
+.content form .loginButton {
+  background-color: #e666fb;
   color: white;
+  font-size: 18px;
+  width: 450px;
+  max-width: 420px;
+  height: 60px;
+  transition: 0.5s;
 }
