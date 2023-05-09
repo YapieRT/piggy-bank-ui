@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './step-list-item.css'
 
-import arrow from "../../../icons/tutorial-page/arrow.png"
+import arrow from "../../../../../icons/tutorial-page/arrow.png"
 
 const StepListItem = (props) => {
     const { icon, step, descr } = props;

@@ -1,53 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './header.css'
-import { BrowserRouter as Link } from 'react-router-dom';
 import logo from '../../icons/header/logo.png'
+import { setActiveContent } from '../../containers/user-page/components/content/content-manager'
+function Header() {
+    const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showBurgerMenu: false,
-        };
-    }
-
-    handleMenuClick = () => {
-        this.setState(prevState => ({
-            showBurgerMenu: !prevState.showBurgerMenu,
-        }));
+    const handleMenuClick = () => {
+        setShowBurgerMenu(!showBurgerMenu);
     };
 
-    render() {
-        const items = ["Home", "Instruction", "About Us", "Support"];
-        const navItemList = items.map((title) => (
-            <li className="nav-item" key={title}>
-                <a href="#">{title}</a>
-            </li>
-        ));
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'auto' });
+    };
 
-        return (
-            <header className="header">
-                <div className="logo-container">
-                    <a href="#" className="logo">
-                        <img src={logo} alt="" />
-                    </a>
-                </div>
+    const handleButtonClick = (content) => {
+        setActiveContent(content);
+    };
 
-                <div className="burger-menu">
-                    <button onClick={this.handleMenuClick}>☰</button>
-                </div>
 
-                <nav className={`nav ${this.state.showBurgerMenu ? "active" : ""}`}>
-                    <ul className="nav-items">{navItemList}</ul>
-                    <div className="buttons-container">
+    const items = ["Home", "Instruction", "About Us", "Support"];
+
+    return (
+        <header className="header">
+            <div className="logo-container">
+                <a href="#" className="logo">
+                    <img src={logo} alt="" />
+                </a>
+            </div>
+
+            <div className="burger-menu">
+                <button onClick={handleMenuClick}>☰</button>
+            </div>
+
+            <nav className={`nav ${showBurgerMenu ? "active" : ""}`}>
+                <ul className="nav-items">
+                    <li className="nav-item" onClick={() => scrollToSection('Home')}>Home</li>
+                    <li className="nav-item" onClick={() => scrollToSection('Instruction')}>Instruction</li>
+                    <li className="nav-item" onClick={() => scrollToSection('About Us')}>About Us</li>
+                    <li className="nav-item" onClick={() => scrollToSection('Support')}>Contacts</li>
+                </ul>
+                <div className="buttons-container">
+                    <Link to="/user#login">
                         <button className="button">Log In</button>
+                    </Link>
+                    <Link to="/user#signup">
                         <button className="button">Sign Up</button>
-                    </div>
-                </nav>
-            </header>
-        );
-    }
-}
+                    </Link>
+                </div>
+
+            </nav>
+        </header>
+    );
+};
 
 export default Header;
 
@@ -71,7 +77,14 @@ export default Header;
     </ul>
     <a href="#" className="site-logo"><img src={test_icon} alt="" /></a>
 </nav>
-</header > */}
+</header > */
+
+/* const navItemList = items.map((title) => (
+            <li className="nav-item" key={title} id={title}>
+                <a href={`#${title}`}>{title}</a>
+            </li>
+    <li className="nav-item" key={title} id={title} onClick={() => scrollToSection(`${title}`)}>{title}</li>
+)); */}
 
 
 

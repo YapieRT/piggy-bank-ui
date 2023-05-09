@@ -1,0 +1,56 @@
+/*  !NOT USED! 
+    !NOT USED! 
+    !NOT USED! 
+    !NOT USED! */
+
+/* import React from 'react';
+import Main from '../containers/main-page/main-page'
+import Tutorial from './tutorial-page/tutorial-page'
+import Contacts from './contacts-page/contacts-page';
+import Info from './info-page/info-page';
+import Header from './header/header';
+import Footer from './footer/footer';
+import CardTest from './test-page/card_test';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+function Pages() {
+    return (
+        <Router>
+            <Routes>
+                <Route exact path="/" element={<Main />} />
+                <Route exact path="/tutorial" element={<Tutorial />} />
+                <Route exact path="/info" element={<Info />} />
+                <Route exact path="/contacts" element={<Contacts />} />
+            </Routes>
+        </Router>
+    );
+}
+export default Pages;
+ */
+{/* <Router>
+<Routes>
+    <Route exact path="/" element={<Main />} />
+    <Route exact path="/tutorial" element={<Tutorial />} />
+    <Route exact path="/info" element={<Info />} />
+    <Route exact path="/contacts" element={<Contacts />} />
+</Routes>
+</Router> */}
+
+{/* <CardTest /> */ }
+
+{/* <Main />
+                    <Tutorial id="tutorial" />
+                    <Info />
+                    <Contacts /> */}
+{/* <Test /> */ }
+/* 
+            <div className="Pages">
+            <Header />
+            <Main />
+            <Tutorial />
+            <Info />
+            <Contacts />
+            <Footer />
+
+        </div> */

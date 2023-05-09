@@ -4,9 +4,9 @@ import StepList from "./step-list/step-list";
 import StepListItem from "./step-list-item/step-list-item";
 import SecurityList from "./security-list/security-list";
 
-import step_1 from '../../img/tutorial-page/step_1.png'
-import step_2 from '../../img/tutorial-page/step_2.png'
-import step_3 from '../../img/tutorial-page/step_3.png'
+import step_1 from '../../../../img/tutorial-page/step_1.png'
+import step_2 from '../../../../img/tutorial-page/step_2.png'
+import step_3 from '../../../../img/tutorial-page/step_3.png'
 
 class Tutorial extends React.Component {
     constructor(props) {
@@ -31,7 +31,7 @@ class Tutorial extends React.Component {
         const text_container_subtitle = "Transaction anywhere, anytime"
         const text_container_title = "We care about your account security"
         return (<>
-            <div className="tutorial" id="tutorial">
+            <div className="tutorial" id="Instruction">
                 <h2 className="title">{title}</h2>
                 <StepList
                     data={data} />

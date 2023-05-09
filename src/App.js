@@ -1,9 +1,32 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.sass';
+/* import Pages from './components/Pages'; */
+import MainPage from './containers/main-page/main-page';
+import UserPage from './containers/user-page/user-page';
 
-const Header = () => {
-  return <h2>Hello World!</h2>
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/user' element={<UserPage />} />
+        </Routes>
+      </Router>
+    </div >
+  );
 }
+export default App;
+
+
+
+
+
+/* export { Header }; */
+/* const Header = () => {
+  return <h2>Hello World!</h2>
+} */
 
 /* const Field = () => {
   const holder = 'Введіть текст';
@@ -16,7 +39,7 @@ const Header = () => {
     style={styledField} />
 } */
 
-class Field extends React.Component {
+/* class Field extends React.Component {
   render() {
     const holder = 'Введіть текст';
     const styledField = {
@@ -34,18 +57,4 @@ function Btn() {
   const logged = false;
   const error = false;
   return <button>{logged ? 'Enter' : error ? 'Error' : 'Log In'}</button>
-}
-
-function App() {
-  return (
-    <div className="App">
-      <React.StrictMode>
-        <Header />
-      </React.StrictMode>
-      <Field />
-      <Btn />
-    </div>
-  );
-}
-export { Header };
-export default App;
+} */

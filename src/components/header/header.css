@@ -30,15 +30,15 @@
 
 .nav-item {
     margin: 0 15px;
-}
-
-.nav-item a {
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
     color: #6E4A75;
     text-transform: capitalize;
     transition: all 0.25s ease-in-out;
+    border: none;
+    cursor: pointer;
+    background: none;
 }
 
 .buttons-container {
@@ -64,7 +64,7 @@
     color: #F7CFFE;
 }
 
-.nav-item a:hover {
+.nav-item:hover {
     color: #DCB0E4;
 }
 
@@ -72,7 +72,7 @@
     display: none;
 }
 
-@media screen and (max-width: 869px) {
+@media screen and (max-width: 875px) {
     .button {
         margin: 5px;
     }
