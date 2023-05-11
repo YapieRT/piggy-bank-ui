@@ -6,22 +6,19 @@ import MainPage from './containers/main-page/main-page';
 import UserPage from './containers/user-page/user-page';
 
 function App() {
+  document.title = 'PiggyBank';
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/user' element={<UserPage />} />
         </Routes>
       </Router>
-    </div >
+    </div>
   );
 }
 export default App;
-
-
-
-
 
 /* export { Header }; */
 /* const Header = () => {

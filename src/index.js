@@ -4,15 +4,11 @@ import './index.css';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <App />
-);
-
-
-
+root.render(<App />);
 
 /* import Pages from './components/Pages' */
-{/* < link rel="stylesheet"
+{
+  /* < link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Livvic" ></link >
 const text = 'Hello World!';
 const test = (
@@ -22,4 +18,5 @@ const test = (
     <label htmlFor="">Aboba</label>
     <button tabIndex="0">Click</button>
   </div>
-); */}
+); */
+}

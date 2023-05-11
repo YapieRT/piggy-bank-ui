@@ -4,7 +4,11 @@ import './login-content.css';
 import { useState } from 'react';
 import axios from 'axios';
 
+import { useNavigate } from 'react-router-dom';
+
 const LoginContent = () => {
+  document.title = 'PiggyBank - Login';
+  const navigate = useNavigate();
   const [password, setEnteredPassword] = useState('');
   const [email, setEnteredEmail] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
@@ -23,6 +27,8 @@ const LoginContent = () => {
     await axios
       .post('http://localhost:3002/login', postData)
       .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        navigate('/user#profile');
         setLoginStatus(response.data.message);
       })
       .catch((error) => {

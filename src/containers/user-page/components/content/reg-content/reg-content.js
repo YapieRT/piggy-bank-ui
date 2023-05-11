@@ -2,6 +2,7 @@ import './reg-content.css';
 import { useState } from 'react';
 
 const RegistrationContent = () => {
+  document.title = 'PiggyBank - Registration';
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: '',

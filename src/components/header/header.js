@@ -18,9 +18,6 @@ function Header() {
   const handleButtonClick = (content) => {
     setActiveContent(content);
   };
-
-  const items = ['Home', 'Instruction', 'About Us', 'Support'];
-
   return (
     <header className='header'>
       <div className='logo-container'>
@@ -62,54 +59,3 @@ function Header() {
 }
 
 export default Header;
-
-{
-  /* <header>
-<nav className="nav">
-    <a href="#" className="site-logo"><img src={test_icon} alt="" /></a>
-    <ul className="bars">
-        <li>
-            <a href='#'>Home</a>
-        </li>
-        <li>
-            <a href='#'>Instruction</a>
-        </li>
-        <li>
-            <a href='#'>About Us</a>
-        </li>
-        <li>
-            <a href='#'>Support</a>
-        </li>
-    </ul>
-    <a href="#" className="site-logo"><img src={test_icon} alt="" /></a>
-</nav>
-</header > */
-  /* const navItemList = items.map((title) => (
-            <li className="nav-item" key={title} id={title}>
-                <a href={`#${title}`}>{title}</a>
-            </li>
-    <li className="nav-item" key={title} id={title} onClick={() => scrollToSection(`${title}`)}>{title}</li>
-)); */
-}
-
-{
-  /* <nav className="nav">
-<a href="#" className="site-logo"><img src={test_icon} alt="" /></a>
-<ul>
-    <NavLink to="/tutorial">Tutorial</NavLink>
-    <li>
-    <a href='#'>Home</a>
-</li>
-<li>
-    <a href='#'>Instruction</a>
-</li>
-<li>
-    <a href='#'>About Us</a>
-</li>
-<li>
-    <a href='#'>Support</a>
-</li>
-
-</ul>
-</nav> */
-}
