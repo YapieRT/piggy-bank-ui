@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 /* REGISTRATION STEP CONTENT */
 import { RenderStepOne, RenderStepTwo, RenderStepThree, RenderStepFour } from './step-content/step-content';
@@ -9,7 +10,8 @@ import './reg-content.css';
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 4;
-
+  const [registrationStatus, setRegistrationStatus] = useState('');
+  const [registrationErrors, setRegistrationErrors] = useState([]);
   const [userData, setUserData] = useState({
     name: '',
     surname: '',
@@ -17,12 +19,30 @@ const RegistrationForm = () => {
     phone_number: '',
     address: '',
     email: '',
+    password: '',
   });
+
   const handleUserData = (attr) => {
-    setUserData({ ...userData, attr });
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      ...attr,
+    }));
   };
-  const handleFormDataNext = () => {
-    setCurrentStep(currentStep + 1);
+  const handleFormDataNext = async () => {
+    await axios
+      .post('http://localhost:3002/existenceCheck', { ...userData })
+      .then((response) => {
+        setCurrentStep(currentStep + 1);
+      })
+      .catch((error) => {
+        if (error.response.data.errors) {
+          setRegistrationErrors(error.response.data.errors);
+          setRegistrationStatus('');
+          return;
+        }
+        setRegistrationErrors([]);
+        setRegistrationStatus(error.response.data.message);
+      });
   };
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
@@ -33,16 +53,7 @@ const RegistrationForm = () => {
   };
 
   const handleFinish = () => {
-    // FINISH LOGIC
     console.log('User data:', userData);
-  };
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      [name]: value,
-    }));
   };
 
   const renderProgressBar = () => {
@@ -73,7 +84,11 @@ const RegistrationForm = () => {
       case 2:
         return (
           <div className='step-content'>
-            <RenderStepTwo onChange={handleUserData} />
+            <RenderStepTwo
+              onChange={handleUserData}
+              registrationStatus={registrationStatus}
+              registrationErrors={registrationErrors}
+            />
           </div>
         );
       case 3:

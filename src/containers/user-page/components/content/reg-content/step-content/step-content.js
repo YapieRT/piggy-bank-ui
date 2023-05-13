@@ -20,31 +20,56 @@ export const RenderStepOne = () => {
   );
 };
 
-export const RenderStepTwo = ({ onChange }) => {
-  const [name, setRegFirstName] = useState('');
-  const [surname, setRegSecondName] = useState('');
-  const [birth_date, setRegBirthDate] = useState('');
-  const [phone_number, setRegPhone] = useState('');
-  const [address, setRegAddress] = useState('');
-  const [email, setRegEmail] = useState('');
+export const RenderStepTwo = ({ onChange, registrationStatus, registrationErrors }) => {
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const updateUserData = (obj) => {
+    onChange(obj);
+  };
+  const passwordEquality = () => {
+    if (password === passwordConfirm && password !== '') {
+      updateUserData({ password: password });
+    }
+  };
+  const errorHandlers = () => {
+    if (registrationErrors.length !== 0) {
+      let errors = registrationErrors.map((error, index) => (
+        <p className='registrationStatus' key={index}>
+          {error}
+        </p>
+      ));
+      return <>{errors}</>;
+    } else if (registrationStatus) {
+      return <p className='registrationStatus'>{registrationStatus}</p>;
+    }
+  };
 
   const firstNameHandler = (event) => {
-    setRegBirthDate(event.target.value);
+    updateUserData({ name: event.target.value });
   };
   const secondNameHandler = (event) => {
-    setRegBirthDate(event.target.value);
+    updateUserData({ surname: event.target.value });
   };
   const birthDateHandler = (event) => {
-    setRegBirthDate(event.target.value);
+    updateUserData({ birth_date: event.target.value });
   };
   const phoneHandler = (event) => {
-    setRegBirthDate(event.target.value);
+    updateUserData({ phone_number: event.target.value });
   };
   const addressHandler = (event) => {
-    setRegBirthDate(event.target.value);
+    updateUserData({ address: event.target.value });
   };
   const emailHandler = (event) => {
-    setRegBirthDate(event.target.value);
+    updateUserData({ email: event.target.value });
+  };
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+    passwordEquality();
+  };
+  const passwordConfirmHandler = (event) => {
+    setPasswordConfirm(event.target.value);
+    passwordEquality();
   };
 
   return (
@@ -86,13 +111,14 @@ export const RenderStepTwo = ({ onChange }) => {
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='password'>Password:</label>
-            <input type='password' id='password' name='password' />
+            <input type='password' id='password' name='password' onChange={passwordHandler} />
           </div>
           <div className='form-input'>
             <label htmlFor='confirmPassword'>Confirm Password:</label>
-            <input type='password' id='confirmPassword' name='confirmPassword' />
+            <input type='password' id='confirmPassword' name='confirmPassword' onChange={passwordConfirmHandler} />
           </div>
         </div>
+        {errorHandlers()}
       </form>
     </div>
   );

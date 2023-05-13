@@ -4,7 +4,9 @@ function Footer({ getStartedFlag }) {
   const items = ['Home', 'Instruction', 'About Us', 'Support'];
   const navItemList = items.map((title) => (
     <li className='nav-item'>
-      <a href='#'>{title}</a>
+      <a href='#' key={title}>
+        {title}
+      </a>
     </li>
   ));
   const getStarted = getStartedFlag ? (
