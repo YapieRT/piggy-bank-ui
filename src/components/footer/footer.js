@@ -3,10 +3,8 @@ import './footer.css';
 function Footer({ getStartedFlag }) {
   const items = ['Home', 'Instruction', 'About Us', 'Support'];
   const navItemList = items.map((title) => (
-    <li className='nav-item'>
-      <a href='#' key={title}>
-        {title}
-      </a>
+    <li className='nav-item' key={title}>
+      <a href='#'>{title}</a>
     </li>
   ));
   const getStarted = getStartedFlag ? (

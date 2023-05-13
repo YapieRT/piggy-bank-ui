@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,9 +9,14 @@ import './reg-content.css';
 
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
+
   const totalSteps = 4;
+
   const [registrationStatus, setRegistrationStatus] = useState('');
   const [registrationErrors, setRegistrationErrors] = useState([]);
+
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
   const [userData, setUserData] = useState({
     name: '',
     surname: '',
@@ -21,21 +26,40 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   });
-
-  const handleUserData = (attr) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
+  const passwordEquality = (pass, passConfirm) => {
+    if (pass === passConfirm && pass !== '') {
+      setUserData({
+        ...userData,
+        password: pass,
+      });
+      setRegistrationStatus('');
+      return true;
+    }
+    return false;
+  };
+  const handlePasswordConfirm = async (passConfirm) => {
+    await setPasswordConfirm(passConfirm);
+  };
+  const handleUserData = async (attr) => {
+    await setUserData({
+      ...userData,
       ...attr,
-    }));
+    });
   };
   const handleFormDataNext = async () => {
+    if (!(await passwordEquality(userData.password, passwordConfirm))) {
+      setRegistrationStatus('Your password are not the same');
+      return;
+    }
+    console.log({ ...userData });
+
     await axios
       .post('http://localhost:3002/existenceCheck', { ...userData })
       .then((response) => {
         setCurrentStep(currentStep + 1);
       })
       .catch((error) => {
-        if (error.response.data.errors) {
+        if (error.response.data.errors.length !== 0) {
           setRegistrationErrors(error.response.data.errors);
           setRegistrationStatus('');
           return;
@@ -45,6 +69,7 @@ const RegistrationForm = () => {
       });
   };
   const handleNext = () => {
+    console.log(userData);
     setCurrentStep(currentStep + 1);
   };
 
@@ -88,6 +113,8 @@ const RegistrationForm = () => {
               onChange={handleUserData}
               registrationStatus={registrationStatus}
               registrationErrors={registrationErrors}
+              onChangePasswordConfirm={handlePasswordConfirm}
+              userData={userData}
             />
           </div>
         );

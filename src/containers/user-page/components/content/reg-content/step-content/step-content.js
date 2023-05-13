@@ -20,23 +20,22 @@ export const RenderStepOne = () => {
   );
 };
 
-export const RenderStepTwo = ({ onChange, registrationStatus, registrationErrors }) => {
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-
+export const RenderStepTwo = ({
+  onChange,
+  registrationStatus,
+  registrationErrors,
+  onChangePasswordConfirm,
+  userData,
+}) => {
   const updateUserData = (obj) => {
     onChange(obj);
   };
-  const passwordEquality = () => {
-    if (password === passwordConfirm && password !== '') {
-      updateUserData({ password: password });
-    }
-  };
+
   const errorHandlers = () => {
     if (registrationErrors.length !== 0) {
       let errors = registrationErrors.map((error, index) => (
         <p className='registrationStatus' key={index}>
-          {error}
+          {error.msg}
         </p>
       ));
       return <>{errors}</>;
@@ -64,12 +63,10 @@ export const RenderStepTwo = ({ onChange, registrationStatus, registrationErrors
     updateUserData({ email: event.target.value });
   };
   const passwordHandler = (event) => {
-    setPassword(event.target.value);
-    passwordEquality();
+    updateUserData({ password: event.target.value });
   };
   const passwordConfirmHandler = (event) => {
-    setPasswordConfirm(event.target.value);
-    passwordEquality();
+    onChangePasswordConfirm(event.target.value);
   };
 
   return (
@@ -79,39 +76,58 @@ export const RenderStepTwo = ({ onChange, registrationStatus, registrationErrors
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='firstName'>First Name:</label>
-            <input type='text' id='firstName' name='firstName' required onChange={firstNameHandler} />
+            <input
+              type='text'
+              id='firstName'
+              name='firstName'
+              required
+              onChange={firstNameHandler}
+              value={userData.name}
+            />
           </div>
           <div className='form-input'>
             <label htmlFor='lastName'>Last Name:</label>
-            <input type='text' id='lastName' name='lastName' onChange={secondNameHandler} />
+            <input type='text' id='lastName' name='lastName' onChange={secondNameHandler} value={userData.surname} />
           </div>
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='birthDate'>Birth Date:</label>
-            <input type='date' id='birthDate' name='birthDate' onChange={birthDateHandler} />
+            <input
+              type='date'
+              id='birthDate'
+              name='birthDate'
+              onChange={birthDateHandler}
+              value={userData.birth_date}
+            />
           </div>
           <div className='form-input'>
             <label htmlFor='phoneNumber'>Phone Number:</label>
-            <input type='tel' id='phoneNumber' name='phoneNumber' onChange={phoneHandler} />
+            <input
+              type='tel'
+              id='phoneNumber'
+              name='phoneNumber'
+              onChange={phoneHandler}
+              value={userData.phone_number}
+            />
           </div>
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='cityaddress'>City, Address:</label>
-            <input type='text' id='cityaddress' name='cityaddress' onChange={addressHandler} />
+            <input type='text' id='cityaddress' name='cityaddress' onChange={addressHandler} value={userData.address} />
           </div>
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='email'>Email:</label>
-            <input type='email' id='email' name='email' onChange={emailHandler} />
+            <input type='email' id='email' name='email' onChange={emailHandler} value={userData.email} />
           </div>
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='password'>Password:</label>
-            <input type='password' id='password' name='password' onChange={passwordHandler} />
+            <input type='password' id='password' name='password' onChange={passwordHandler} value={userData.password} />
           </div>
           <div className='form-input'>
             <label htmlFor='confirmPassword'>Confirm Password:</label>

@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginContent = () => {
   document.title = 'PiggyBank - Login';
   const navigate = useNavigate();
-  const [password, setEnteredPassword] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState('');
   const [email, setEnteredEmail] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
 
@@ -23,7 +23,7 @@ const LoginContent = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    const postData = { email: email, password: password };
+    const postData = { email: email, password: enteredPassword };
     await axios
       .post('http://localhost:3002/login', postData)
       .then((response) => {
