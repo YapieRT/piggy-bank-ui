@@ -1,241 +1,131 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+/* REGISTRATION STEP CONTENT */
+import { RenderStepOne, RenderStepTwo, RenderStepThree, RenderStepFour } from './step-content/step-content';
+
 import './reg-content.css';
-import { useState } from 'react';
 
-const RegistrationContent = () => {
-  document.title = 'PiggyBank - Registration';
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    birthDate: '',
-    phone: '',
-    address: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    color: '',
-  });
+const RegistrationForm = () => {
+    const [currentStep, setCurrentStep] = useState(1);
+    const totalSteps = 4; // Общее количество этапов
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    const [userData, setUserData] = useState({
+        // Здесь вы можете добавить свойства объекта, соответствующие данным пользователя
+        firstName: '',
+        lastName: '',
+        email: '',
+        // и т.д.
+    });
 
-  const handleNext = () => {
-    setStep((prevStep) => prevStep + 1);
-  };
+    const handleNext = () => {
+        setCurrentStep(currentStep + 1);
+    };
 
-  const handlePrevious = () => {
-    setStep((prevStep) => prevStep - 1);
-  };
+    const handlePrevious = () => {
+        setCurrentStep(currentStep - 1);
+    };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Process the form data
-    console.log(formData);
-  };
+    const handleFinish = () => {
+        // FINISH LOGIC
+        console.log('User data:', userData);
+    };
 
-  return (
-    <div className='registration-form'>
-      <div className='step-progress'>
-        <div className={`step ${step === 1 ? 'active' : ''}`}></div>
-        <div className={`step ${step === 2 ? 'active' : ''}`}></div>
-        <div className={`step ${step === 3 ? 'active' : ''}`}></div>
-        <div className={`step ${step === 4 ? 'active' : ''}`}></div>
-      </div>
-      <form onSubmit={handleSubmit}>
-        {step === 1 && (
-          <div className='step-content'>
-            <button type='button' onClick={handleNext}>
-              Start
-            </button>
-          </div>
-        )}
-        {step === 2 && (
-          <div className='step-content'>
-            <div className='row'>
-              <div className='input-container'>
-                <label>First Name:</label>
-                <input
-                  type='text'
-                  name='firstName'
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder='First Name'
-                  required
-                />
-              </div>
-              <div className='input-container'>
-                <label>Last Name:</label>
-                <input
-                  type='text'
-                  name='lastName'
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder='Last Name'
-                  required
-                />
-              </div>
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUserData((prevUserData) => ({
+            ...prevUserData,
+            [name]: value,
+        }));
+    };
+
+    const renderProgressBar = () => {
+        return (
+            <div className="progress-bar">
+                {Array.from({ length: totalSteps }, (_, index) => (
+                    <React.Fragment key={index}>
+                        <div className={`progress-bar__step ${index < currentStep ? 'active' : ''}`}>
+                            {index + 1 <= currentStep - 1 ? <span>&#10003;</span> : index + 1}
+                        </div>
+                        {index !== totalSteps - 1 && (
+                            <div
+                                className={`progress-bar__connector ${index < currentStep - 1 ? 'active' : ''}`}
+                            />
+                        )}
+                    </React.Fragment>
+                ))}
             </div>
-            <div className='row'>
-              <div className='input-container'>
-                <label>Birth Date:</label>
-                <input
-                  type='date'
-                  name='birthDate'
-                  value={formData.birthDate}
-                  onChange={handleChange}
-                  placeholder='Birth Date'
-                  required
-                />
-              </div>
-              <div className='input-container'>
-                <label>Phone:</label>
-                <input
-                  type='tel'
-                  name='phone'
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder='Phone'
-                  required
-                />
-              </div>
-            </div>
-            <div className='row'>
-              <div className='input-container'>
-                <label>Address:</label>
-                <input
-                  type='text'
-                  name='address'
-                  value={formData.address}
-                  onChange={handleChange}
-                  placeholder='Address'
-                  required
-                />
-              </div>
-            </div>
-            <div className='row'>
-              <div className='input-container'>
-                <label>Email:</label>
-                <input
-                  type='email'
-                  name='email'
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder='Email'
-                  required
-                />
-              </div>
-            </div>
-            <div className='row'>
-              <div className='input-container'>
-                <label>Password:</label>
-                <input
-                  type='password'
-                  name='password'
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder='Password'
-                  required
-                />
-              </div>
-              <div className='input-container'>
-                <label>Confirm Password:</label>
-                <input
-                  type='password'
-                  name='confirmPassword'
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  placeholder='Confirm Password'
-                  required
-                />
-              </div>
-            </div>
-            <div className='button-container'>
-              <button className='previous' type='button' onClick={handlePrevious}>
-                Previous
-              </button>
-              <button type='button' onClick={handleNext}>
-                Next
-              </button>
-            </div>
-          </div>
-        )}
-        {step === 3 && (
-          <div className='step-content'>
-            <div className='row'>
-              <div className='input-container'>
-                <label>Color:</label>
-                <div className='radio-container'>
-                  <input
-                    type='radio'
-                    id='yellow'
-                    name='color'
-                    value='yellow'
-                    checked={formData.color === 'yellow'}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor='yellow'>Yellow</label>
-                </div>
-                <div className='radio-container'>
-                  <input
-                    type='radio'
-                    id='red'
-                    name='color'
-                    value='red'
-                    checked={formData.color === 'red'}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor='red'>Red</label>
-                </div>
-                <div className='radio-container'>
-                  <input
-                    type='radio'
-                    id='pink'
-                    name='color'
-                    value='pink'
-                    checked={formData.color === 'pink'}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor='pink'>Pink</label>
-                </div>
-                <div className='radio-container'>
-                  <input
-                    type='radio'
-                    id='purple'
-                    name='color'
-                    value='purple'
-                    checked={formData.color === 'purple'}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor='purple'>Purple</label>
-                </div>
-              </div>
-            </div>
-            <div className='button-container'>
-              <button className='previous' type='button' onClick={handlePrevious}>
-                Previous
-              </button>
-              <button type='button' onClick={handleNext}>
-                Next
-              </button>
-            </div>
-          </div>
-        )}
-        {step === 4 && (
-          <div className='step-content'>
-            <button className='previous' type='button' onClick={handlePrevious}>
-              Previous
-            </button>
-            <button type='submit'>Submit</button>
-          </div>
-        )}
-      </form>
-    </div>
-  );
+        );
+    };
+
+    const renderContent = () => {
+        switch (currentStep) {
+            case 1:
+                return (
+                    <div className="step-content">
+                        <RenderStepOne />
+                    </div>
+                );
+            case 2:
+                return (
+                    <div className="step-content">
+                        <RenderStepTwo />
+                    </div>
+                );
+            case 3:
+                return (
+                    <div className="step-content">
+                        <RenderStepThree />
+                    </div>
+                );
+            case 4:
+                return (
+                    <div className="step-content">
+                        <RenderStepFour />
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
+    const renderNavigationButtons = () => {
+        if (currentStep === 1) {
+            return <button className="navigation-btn std" onClick={handleNext}>Next  </button>;
+        }
+        else if (currentStep === 2) {
+            return (<>
+                <button className="navigation-btn nstd" onClick={handlePrevious}>Previous</button>
+                <button className="navigation-btn std" onClick={handleNext}>Next  </button>
+            </>);
+        }
+        else if (currentStep === totalSteps) {
+            return (
+                /*  <Link to="/user#login">
+                         
+                     </Link> */
+                <><button className="navigation-btn std" onClick={handleFinish}>Finish
+                </button>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    <button className="navigation-btn nstd" onClick={handlePrevious}>Previous</button>
+                    <button className="navigation-btn std" onClick={handleNext}>Next</button>
+                </>
+            );
+        }
+    };
+
+    return (
+        <div className="registration-form">
+            {renderProgressBar()}
+            {renderContent()}
+            <div className="navigation-buttons">{renderNavigationButtons()}</div>
+        </div>
+    );
 };
 
-export default RegistrationContent;
+export default RegistrationForm;

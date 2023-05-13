@@ -22,7 +22,7 @@
   line-height: 30px;
 }
 
-form {
+.loginForm {
   font-family: 'Livvic';
   font-style: normal;
   font-weight: 400;
@@ -33,18 +33,47 @@ form {
   justify-content: center;
   align-items: center;
 }
-
-form .input-container input {
+.loginForm .input-container label {
+  display: block;
+  line-height: 15px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.loginForm .input-container input {
   width: 400px;
+  padding: 10px;
+  gap: 10px;
+
   height: 35px;
+  border: 1px solid #979797;
+  border-radius: 15px;
+  outline-color: #d68cd3;
+  color: #764b7d;
 }
 
-.content form .loginButton {
-  background-color: #e666fb;
+.loginForm .input-container .loginStatus {
+  width: 400px;
+  padding: 10px;
+  gap: 10px;
+
+  height: 35px;
+
+  color: #764b7d;
+}
+
+.content .loginForm .loginButton {
+  border-radius: 15px;
+  background-color: #d68cd3;
   color: white;
   font-size: 18px;
   width: 450px;
   max-width: 420px;
   height: 60px;
   transition: 0.5s;
+}
+
+.content .loginForm .loginButton:hover {
+  background-color: #eba1e8;
+  color: #f7cffe;
 }

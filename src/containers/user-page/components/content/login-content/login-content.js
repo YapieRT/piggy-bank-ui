@@ -39,7 +39,7 @@ const LoginContent = () => {
     <div className='content'>
       <h2>Welcome Back!</h2>
       <h4>Please fill in the form below:</h4>
-      <form onSubmit={submitHandler}>
+      <form className='loginForm' onSubmit={submitHandler}>
         <div className='input-container'>
           <label>Email:</label>
           <input required type='text' placeholder='Write text here...' onChange={emailChangeHandler} />
@@ -48,7 +48,7 @@ const LoginContent = () => {
           <label>Password:</label>
           <input required type='password' placeholder='Write text here...' onChange={passwordChangeHandler} />
         </div>
-        <p>{loginStatus}</p>
+        <p className='loginStatus'>{loginStatus}</p>
         <button className='loginButton' type='submit'>
           Log In
         </button>

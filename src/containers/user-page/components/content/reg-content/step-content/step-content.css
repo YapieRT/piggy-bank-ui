@@ -1,0 +1,192 @@
+/* ##### GENERAL WRAPPER ##### */
+.step-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 15px;
+}
+
+/* ##### STEP ONE ##### */
+
+.step-wrapper.step-one {
+  align-items: center;
+}
+
+.step-wrapper.step-one .logo {
+  width: 256px;
+  height: 115px;
+  margin-bottom: 25px;
+}
+
+.step-wrapper.step-one .title {
+  font-weight: 600;
+  font-size: 36px;
+  color: #764b7d;
+  margin-bottom: 10px;
+}
+
+.step-wrapper.step-one .descr {
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #764b7d;
+  margin-bottom: 25px;
+}
+
+/* ##### STEP TWO ##### */
+
+.step-wrapper.step-two {
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+.step-wrapper.step-two .title {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color: #764b7d;
+  margin-bottom: 25px;
+}
+
+/* .step-wrapper.step-two .form {
+
+} */
+
+.step-wrapper.step-two .form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.step-wrapper.step-two .form .form-row .form-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.step-wrapper.step-two .form .form-row .form-input label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #764b7d;
+}
+
+.step-wrapper.step-two .form .form-row .form-input input {
+  width: 100%;
+  height: 35px;
+  box-sizing: border-box;
+  padding: 10px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #979797;
+  border-radius: 15px;
+  outline-color: #d68cd3;
+  font-size: 14px;
+  color: #764b7d;
+}
+
+.step-wrapper.step-two .form .form-row .form-input:last-child {
+  margin-right: 0;
+}
+
+/* ##### STEP THREE ##### */
+
+.step-wrapper.step-three {
+  align-items: center;
+}
+
+.step-wrapper.step-three .title,
+.step-wrapper.step-three .descr {
+  color: #764b7d;
+}
+
+.step-wrapper.step-three .title {
+  font-weight: 600;
+  font-size: 36px;
+}
+
+.step-wrapper.step-three .descr {
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.step-wrapper.step-three .card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 15px 30px;
+  background: #d68cd3;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.step-wrapper.step-three .visa,
+.step-wrapper.step-three .mastercard {
+  width: 100%;
+  opacity: 30%;
+  margin: 0 15px;
+  transform: scale(0.8);
+}
+
+.step-wrapper.step-three .color-range {
+  width: 100%;
+  height: 30px;
+  padding: 0;
+  border: none;
+  outline: none;
+  appearance: none;
+  border-radius: 15px;
+  background-image: linear-gradient(to right, rgb(255, 0, 0), rgb(0, 255, 0), rgb(0, 0, 255));
+  cursor: pointer;
+  margin: 10px;
+}
+
+.step-wrapper.step-three .color-range::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border: none;
+}
+
+.step-wrapper.step-three .color-range::-webkit-color-swatch {
+  border: none;
+  border-radius: 15px;
+}
+
+/* ##### STEP FOUR ##### */
+
+.step-wrapper.step-four {
+  align-items: center;
+}
+
+.step-wrapper.step-four .success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 128px;
+  height: 128px;
+  background: #d68cd3;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 60px;
+  margin: 10px;
+}
+
+.step-wrapper.step-four .title {
+  font-weight: 600;
+  font-size: 36px;
+  color: #764b7d;
+  margin: 10px;
+}
+
+.step-wrapper.step-four .descr {
+  font-weight: 400;
+  font-size: 18px;
+  color: #764b7d;
+  text-align: center;
+  margin: 10px;
+}

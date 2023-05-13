@@ -1,87 +1,126 @@
-.registration-form {
-  max-width: 650px;
-  height: auto;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.step-progress {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.step {
-  flex: 1;
-  height: 10px;
-  background-color: lightgray;
-  margin-right: 5px;
-}
-
-.step.active {
-  background-color: blue;
-}
-
 .step-content {
-  margin-bottom: 20px;
+  max-width: 500px;
 }
 
-.row {
+.progress-bar {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 10px;
-}
-
-input,
-label {
-  display: flex;
-}
-.row label {
-  width: 120px;
-  text-align: right;
-  margin-right: 10px;
-}
-
-.row input {
-  flex: 1;
-  height: 30px;
-  padding: 5px;
-  border: 1px solid #979797;
-  border-radius: 15px;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin-top: 10px;
+  /* Изменено на space-between */
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-input[type='text'],
-input[type='date'],
-input[type='tel'],
-input[type='email'],
-input[type='password'],
-button {
-  margin-top: 10px;
-  padding: 10px;
-  width: 200px;
-  height: 40px;
-  border: 1px solid #979797;
-  border-radius: 15px;
+.progress-bar__step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.progress-bar__step.active {
+  background-color: #d68cd3;
+  transition-delay: 0.25s;
+}
+
+.progress-bar__connector {
+  flex-grow: 1;
+  /* Добавлено для занимания пространства между кружочками */
+  height: 3px;
+  margin-right: 10px;
+  background-image: linear-gradient(to right, #d68cd3 0%, #d68cd3 50%, #ccc 50%, #ccc 100%);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s ease;
+}
+
+.progress-bar__connector.active {
+  background-position: left;
+}
+
+.navigation-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   box-sizing: border-box;
 }
 
-button {
-  background: #e666fb;
-  color: white;
+.navigation-btn.std,
+.navigation-btn.nstd {
+  padding: 10px;
+  width: 100%;
+  height: 60px;
+  border-radius: 15px;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 5px;
+  transition: 0.5s;
 }
 
-.previous {
-  border: solid 2px #e666fb;
-  background-color: white;
-  color: #e666fb;
+.navigation-btn.std {
+  background: #d68cd3;
+  color: #ffffff;
+}
+
+.navigation-btn.nstd {
+  background: none;
+  border: 2px solid #d68cd3;
+  color: #d68cd3;
+}
+
+.navigation-btn.std:hover {
+  background-color: #eba1e8;
+  color: #f7cffe;
+}
+
+.navigation-btn.nstd:hover {
+  background: none;
+  border: 2px solid #eba1e8;
+  color: #f7cffe;
+}
+
+.step-check {
+  display: inline-block;
+  position: relative;
+}
+
+.step-number,
+.check-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-number {
+  z-index: 1;
+}
+
+.check-icon {
+  color: #d68cd3;
+  /* Измените цвет на желаемый */
+}
+
+.step-check .hide {
+  opacity: 1;
+}
+
+.step-check .show {
+  opacity: 1;
 }
