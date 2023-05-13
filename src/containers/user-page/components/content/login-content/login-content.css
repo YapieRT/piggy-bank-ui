@@ -52,9 +52,11 @@
   color: #764b7d;
 }
 
-.loginForm .input-container .loginStatus {
+.loginForm .loginStatus {
   width: 400px;
   padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
   gap: 10px;
 
   height: 35px;

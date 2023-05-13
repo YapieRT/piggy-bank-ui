@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import './step-content.css';
 /* ### STEP ONE ### */
 import logo from '../../../../../../icons/header/logo.png';
@@ -19,7 +20,33 @@ export const RenderStepOne = () => {
   );
 };
 
-export const RenderStepTwo = () => {
+export const RenderStepTwo = ({ onChange }) => {
+  const [name, setRegFirstName] = useState('');
+  const [surname, setRegSecondName] = useState('');
+  const [birth_date, setRegBirthDate] = useState('');
+  const [phone_number, setRegPhone] = useState('');
+  const [address, setRegAddress] = useState('');
+  const [email, setRegEmail] = useState('');
+
+  const firstNameHandler = (event) => {
+    setRegBirthDate(event.target.value);
+  };
+  const secondNameHandler = (event) => {
+    setRegBirthDate(event.target.value);
+  };
+  const birthDateHandler = (event) => {
+    setRegBirthDate(event.target.value);
+  };
+  const phoneHandler = (event) => {
+    setRegBirthDate(event.target.value);
+  };
+  const addressHandler = (event) => {
+    setRegBirthDate(event.target.value);
+  };
+  const emailHandler = (event) => {
+    setRegBirthDate(event.target.value);
+  };
+
   return (
     <div className='step-wrapper step-two'>
       <h2 className='title'>Please fill in the form below:</h2>
@@ -27,41 +54,33 @@ export const RenderStepTwo = () => {
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='firstName'>First Name:</label>
-            <input type='text' id='firstName' name='firstName' required />
+            <input type='text' id='firstName' name='firstName' required onChange={firstNameHandler} />
           </div>
           <div className='form-input'>
             <label htmlFor='lastName'>Last Name:</label>
-            <input type='text' id='lastName' name='lastName' />
+            <input type='text' id='lastName' name='lastName' onChange={secondNameHandler} />
           </div>
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='birthDate'>Birth Date:</label>
-            <input type='date' id='birthDate' name='birthDate' />
+            <input type='date' id='birthDate' name='birthDate' onChange={birthDateHandler} />
           </div>
           <div className='form-input'>
             <label htmlFor='phoneNumber'>Phone Number:</label>
-            <input type='number' id='phoneNumber' name='phoneNumber' />
+            <input type='tel' id='phoneNumber' name='phoneNumber' onChange={phoneHandler} />
           </div>
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='cityaddress'>City, Address:</label>
-            <input type='text' id='cityaddress' name='cityaddress' />
+            <input type='text' id='cityaddress' name='cityaddress' onChange={addressHandler} />
           </div>
-          {/* <div className="form-input">
-                        <label htmlFor="city">City:</label>
-                        <input type="text" id="city" name="city" />
-                    </div>
-                    <div className="form-input">
-                        <label htmlFor="address">Address:</label>
-                        <input type="text" id="address" name="address" />
-                    </div> */}
         </div>
         <div className='form-row'>
           <div className='form-input'>
             <label htmlFor='email'>Email:</label>
-            <input type='email' id='email' name='email' />
+            <input type='email' id='email' name='email' onChange={emailHandler} />
           </div>
         </div>
         <div className='form-row'>
