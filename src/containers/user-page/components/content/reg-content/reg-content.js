@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import { useNavigate } from 'react-router-dom';
+
 /* REGISTRATION STEP CONTENT */
 import { RenderStepOne, RenderStepTwo, RenderStepThree, RenderStepFour } from './step-content/step-content';
 
 import './reg-content.css';
 
 const RegistrationForm = () => {
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
 
   const totalSteps = 4;
@@ -15,7 +20,30 @@ const RegistrationForm = () => {
   const [registrationStatus, setRegistrationStatus] = useState('');
   const [registrationErrors, setRegistrationErrors] = useState([]);
 
+  const handleUserData = async (attr) => {
+    await setUserData({
+      ...userData,
+      ...attr,
+    });
+  };
+
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const handlePasswordConfirm = async (passConfirm) => {
+    await setPasswordConfirm(passConfirm);
+  };
+
+  const [color, setColor] = useState('#D68CD3');
+  const [cardType, setCardType] = useState('visa');
+
+  const handleColorChange = (color) => {
+    setColor(color);
+  };
+  const handleCardType = (type) => {
+    setCardType(type);
+  };
+
+  const [signUpResponseData, setSignUpResponseData] = useState({});
 
   const [userData, setUserData] = useState({
     name: '',
@@ -26,16 +54,17 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   });
-  const passwordEquality = (pass, passConfirm) => {};
-  const handlePasswordConfirm = async (passConfirm) => {
-    await setPasswordConfirm(passConfirm);
+
+  const handleFinish = async () => {
+    try {
+      const signupResponse = await axios.post('http://localhost:3002/signup', { ...userData });
+      const responseData = signupResponse.data;
+      setSignUpResponseData(responseData);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const handleUserData = async (attr) => {
-    await setUserData({
-      ...userData,
-      ...attr,
-    });
-  };
+
   const handleFormDataNext = async () => {
     await axios
       .post('http://localhost:3002/existenceCheck', { ...userData })
@@ -61,8 +90,8 @@ const RegistrationForm = () => {
         return;
       });
   };
+
   const handleNext = () => {
-    console.log(userData);
     setCurrentStep(currentStep + 1);
   };
 
@@ -70,9 +99,24 @@ const RegistrationForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleFinish = () => {
-    console.log('User data:', userData);
-  };
+  useEffect(() => {
+    const createCard = async () => {
+      if (signUpResponseData && Object.keys(signUpResponseData).length !== 0) {
+        localStorage.setItem('token', signUpResponseData.token);
+        try {
+          await axios.post('http://localhost:3002/create-card', {
+            userId: signUpResponseData._id,
+            cardType: cardType,
+            cardColor: color,
+          });
+          navigate('/user#profile', {});
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    createCard();
+  }, [signUpResponseData, cardType, color]);
 
   const renderProgressBar = () => {
     return (
@@ -114,7 +158,7 @@ const RegistrationForm = () => {
       case 3:
         return (
           <div className='step-content'>
-            <RenderStepThree />
+            <RenderStepThree onColorChange={handleColorChange} onCardTypeChange={handleCardType} />
           </div>
         );
       case 4:
@@ -135,11 +179,8 @@ const RegistrationForm = () => {
           Next{' '}
         </button>
       );
-    } else if (currentStep === totalSteps) {
+    } else if (currentStep === totalSteps && currentStep !== 1) {
       return (
-        /*  <Link to="/user#login">
-                         
-                     </Link> */
         <>
           <button className='navigation-btn std' onClick={handleFinish}>
             Finish

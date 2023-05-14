@@ -107,6 +107,8 @@
 /* ##### STEP THREE ##### */
 
 .step-wrapper.step-three {
+  display: flex;
+
   align-items: center;
 }
 

@@ -140,15 +140,23 @@ export const RenderStepTwo = ({
   );
 };
 
-export const RenderStepThree = () => {
-  const [color, setColor] = useState('#D68CD3');
+export const RenderStepThree = ({ onColorChange, onCardTypeChange }) => {
+  const [cardColor, setCardColor] = useState('#D68CD3');
+  const [cardType, setCardType] = useState('visa');
+
+  const handleImageClick = (type) => {
+    onCardTypeChange(type);
+    setCardType(type);
+    console.log(cardType);
+  };
 
   const handleColorChange = (event) => {
-    setColor(event.target.value);
+    onColorChange(event.target.value);
+    setCardColor(event.target.value);
   };
 
   const cardStyle = {
-    background: color,
+    background: cardColor,
   };
 
   return (
@@ -156,10 +164,22 @@ export const RenderStepThree = () => {
       <h2 className='title'>There's only a few left</h2>
       <span className='descr'>Choose the type of card you want and your favorite color</span>
       <div className='card-wrapper' style={cardStyle}>
-        <img src={visa} alt='' className='visa' />
-        <img src={mastercard} alt='' className='mastercard' />
+        <img
+          src={visa}
+          alt=''
+          className='visa'
+          style={{ opacity: cardType === 'visa' ? 1 : 0.3 }}
+          onClick={() => handleImageClick('visa')}
+        />
+        <img
+          src={mastercard}
+          alt=''
+          className='mastercard'
+          style={{ opacity: cardType === 'mastercard' ? 1 : 0.3 }}
+          onClick={() => handleImageClick('mastercard')}
+        />
       </div>
-      <input type='color' value={color} onChange={handleColorChange} className='color-range' />
+      <input type='color' value={cardColor} onChange={handleColorChange} className='color-range' />
     </div>
   );
 };
