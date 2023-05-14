@@ -26,17 +26,7 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   });
-  const passwordEquality = (pass, passConfirm) => {
-    if (pass === passConfirm && pass !== '') {
-      setUserData({
-        ...userData,
-        password: pass,
-      });
-      setRegistrationStatus('');
-      return true;
-    }
-    return false;
-  };
+  const passwordEquality = (pass, passConfirm) => {};
   const handlePasswordConfirm = async (passConfirm) => {
     await setPasswordConfirm(passConfirm);
   };
@@ -47,16 +37,18 @@ const RegistrationForm = () => {
     });
   };
   const handleFormDataNext = async () => {
-    if (!(await passwordEquality(userData.password, passwordConfirm))) {
-      setRegistrationStatus('Your password are not the same');
-      return;
-    }
-    console.log({ ...userData });
-
     await axios
       .post('http://localhost:3002/existenceCheck', { ...userData })
       .then((response) => {
-        setCurrentStep(currentStep + 1);
+        setRegistrationStatus('');
+        setRegistrationErrors([]);
+        if (userData.password === passwordConfirm && userData.password !== '') {
+          setCurrentStep(currentStep + 1);
+          return;
+        } else {
+          setRegistrationStatus('Your password are not the same');
+          return;
+        }
       })
       .catch((error) => {
         if (error.response.data.errors.length !== 0) {
@@ -66,6 +58,7 @@ const RegistrationForm = () => {
         }
         setRegistrationErrors([]);
         setRegistrationStatus(error.response.data.message);
+        return;
       });
   };
   const handleNext = () => {
