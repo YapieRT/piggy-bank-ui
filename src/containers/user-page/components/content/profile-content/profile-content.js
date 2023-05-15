@@ -8,7 +8,7 @@ import axios from 'axios';
 function ProfileContent(props) {
   document.title = 'PiggyBank - Profile';
   const [transfers, setTransfers] = useState([]);
-  const [id_receiver, setReceiverId] = useState('');
+  const [ReceiverCard, setReceiverCard] = useState('');
   const [sum_transfer, setTransferAmount] = useState(0);
   const [balance, setBalance] = useState(0);
   const [phone, setPhone] = useState('Loading...');
@@ -17,11 +17,6 @@ function ProfileContent(props) {
   const [name, setName] = useState('Loading...');
   const [cardNumber, setCardNumber] = useState('Loading...');
   const [transferStatus, setTransferStatus] = useState('');
-
-  const testTransactions = [
-    { cardNumber: '1234 5678 9012 3456', amount: 50, balance: 1050.15 },
-    { cardNumber: '9876 5432 1098 7654', amount: 100, balance: 1150.15 },
-  ];
 
   const splitCardNumber = (cardNumber) => {
     cardNumber = cardNumber.replace(/\s/g, '');
@@ -46,6 +41,7 @@ function ProfileContent(props) {
         setBirthDate(info.data.user.birth_date.substring(0, 10));
         setBalance(info.data.card.balance);
         setCardNumber(info.data.card.number);
+        setTransfers(info.data.transfers);
       } catch (error) {
         console.log(error);
       }
@@ -58,18 +54,36 @@ function ProfileContent(props) {
   };
 
   const receiverCardHandler = (event) => {
-    setReceiverId(event.target.value);
+    setReceiverCard(event.target.value);
   };
 
-  const addTransaction = () => {
-    console.log(sum_transfer, balance);
-    if (sum_transfer > balance) {
-      setTransferStatus('You cannot transfer such amount of money');
+  const addTransaction = async () => {
+    if (ReceiverCard === cardNumber) {
+      setTransferStatus('You cannot send money to yourself!');
       return;
     }
-    const newTransaction = { id_receiver: id_receiver, sum_transfer: sum_transfer, balance: balance - sum_transfer };
-    setBalance(balance - sum_transfer);
-    setTransfers([newTransaction, ...transfers]);
+    if (sum_transfer > balance) {
+      setTransferStatus('You cannot send more then you have!');
+      return;
+    }
+    await axios
+      .post('http://localhost:3002/createTransfer', {
+        SenderCard: cardNumber,
+        ReceiverCard: ReceiverCard,
+        sum_transfer: sum_transfer,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        setTransferStatus(error.response.data.message);
+      });
+    const newTransaction = {
+      ReceiverCard: ReceiverCard,
+      sum_transfer: sum_transfer,
+      balance: balance - Number(sum_transfer),
+    };
+    await setBalance(balance - Number(sum_transfer));
+    await setTransfers([newTransaction, ...transfers]);
+    console.log(transfers);
   };
 
   return (
@@ -136,13 +150,33 @@ function ProfileContent(props) {
               </tr>
             </thead>
             <tbody>
-              {transfers.map((transfer, index) => (
-                <tr key={index}>
-                  <td>{transfer.id_receiver}</td>
-                  <td>{transfer.sum_transfer}</td>
-                  <td>{transfer.balance}</td>
-                </tr>
-              ))}
+              {transfers.map((transfer, index) => {
+                let transferCard;
+                let transferAmount;
+                if (String(transfer.ReceiverCard) === cardNumber) {
+                  transferCard = String(transfer.SenderCard);
+                  transferAmount = '+' + String(transfer.sum_transfer);
+                  return (
+                    <tr key={index}>
+                      <td>{transferCard}</td>
+                      <td>{transferAmount}$</td>
+                      <td>{transfer.balance}$</td>
+                    </tr>
+                  );
+                }
+                if (String(transfer.SenderCard) === cardNumber) {
+                  transferCard = String(transfer.SenderCard);
+                  transferAmount = '-' + String(transfer.sum_transfer);
+                  return (
+                    <tr key={index}>
+                      <td>{transferCard}</td>
+                      <td>{transferAmount}$</td>
+                      <td>{transfer.balance}$</td>
+                    </tr>
+                  );
+                }
+                console.log(transfer);
+              })}
             </tbody>
           </table>
         </div>

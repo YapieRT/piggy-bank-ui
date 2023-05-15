@@ -8,12 +8,19 @@ function Header() {
 
   const tokenExists = localStorage.getItem('token') !== null;
 
+  const logOut = () => {
+    localStorage.clear();
+  };
+
   const headerButtons = () => {
     if (tokenExists) {
       return (
         <>
           <Link to='/user#profile'>
             <button className='button'>Profile</button>
+          </Link>
+          <Link to='/' onClick={logOut}>
+            <button className='button'>Log out</button>
           </Link>
         </>
       );
