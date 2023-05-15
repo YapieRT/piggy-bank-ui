@@ -6,6 +6,31 @@ import { setActiveContent } from '../../containers/user-page/components/content/
 function Header() {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
+  const tokenExists = localStorage.getItem('token') !== null;
+
+  const headerButtons = () => {
+    if (tokenExists) {
+      return (
+        <>
+          <Link to='/user#profile'>
+            <button className='button'>Profile</button>
+          </Link>
+        </>
+      );
+    } else {
+      return (
+        <>
+          {' '}
+          <Link to='/user#login'>
+            <button className='button'>Log In</button>
+          </Link>
+          <Link to='/user#signup'>
+            <button className='button'>Sign Up</button>
+          </Link>
+        </>
+      );
+    }
+  };
   const handleMenuClick = () => {
     setShowBurgerMenu(!showBurgerMenu);
   };
@@ -45,14 +70,7 @@ function Header() {
             Contacts
           </li>
         </ul>
-        <div className='buttons-container'>
-          <Link to='/user#login'>
-            <button className='button'>Log In</button>
-          </Link>
-          <Link to='/user#signup'>
-            <button className='button'>Sign Up</button>
-          </Link>
-        </div>
+        <div className='buttons-container'>{headerButtons()}</div>
       </nav>
     </header>
   );

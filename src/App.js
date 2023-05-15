@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/user' element={<UserPage />} />
+          <Route path='/adminpanel' element={<UserPage />} />
         </Routes>
       </Router>
     </div>
