@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import logo from '../../icons/header/logo.png';
-import { setActiveContent } from '../../containers/user-page/components/content/content-manager';
+
 function Header() {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
@@ -20,7 +20,7 @@ function Header() {
             <button className='button'>Profile</button>
           </Link>
           <Link to='/' onClick={logOut}>
-            <button className='button'>Log out</button>
+            <button className='button logOut'>Log out</button>
           </Link>
         </>
       );
@@ -47,9 +47,6 @@ function Header() {
     section.scrollIntoView({ behavior: 'auto' });
   };
 
-  const handleButtonClick = (content) => {
-    setActiveContent(content);
-  };
   return (
     <header className='header'>
       <div className='logo-container'>

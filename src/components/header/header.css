@@ -59,6 +59,12 @@
   transition: all 0.15s ease-in-out;
 }
 
+.logOut {
+  background: white;
+  color: #d68cd3;
+  border: solid 1px #d68cd3;
+}
+
 .button:hover {
   background-color: #eba1e8;
   color: #f7cffe;

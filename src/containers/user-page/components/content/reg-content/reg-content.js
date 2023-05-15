@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
@@ -10,8 +10,6 @@ import { RenderStepOne, RenderStepTwo, RenderStepThree, RenderStepFour } from '.
 import './reg-content.css';
 
 const RegistrationForm = () => {
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -80,13 +78,9 @@ const RegistrationForm = () => {
         }
       })
       .catch((error) => {
-        if (error.response.data.errors.length !== 0) {
-          setRegistrationErrors(error.response.data.errors);
-          setRegistrationStatus('');
-          return;
-        }
-        setRegistrationErrors([]);
-        setRegistrationStatus(error.response.data.message);
+        if (error.response.data.errors) setRegistrationErrors(error.response.data.errors);
+
+        if (error.response.data.message) setRegistrationStatus(error.response.data.message);
         return;
       });
   };

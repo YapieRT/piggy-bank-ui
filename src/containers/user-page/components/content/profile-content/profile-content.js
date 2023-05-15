@@ -4,21 +4,32 @@ import { useState } from 'react';
 import './profile-content.css';
 import card from '../../../../../img/main-page/main_card.png';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function ProfileContent(props) {
+  const navigate = useNavigate();
   document.title = 'PiggyBank - Profile';
+  if (!localStorage.getItem('token')) navigate('/');
   const [transfers, setTransfers] = useState([]);
   const [ReceiverCard, setReceiverCard] = useState('');
   const [sum_transfer, setTransferAmount] = useState(0);
+  const [userInfo, setUserInfo] = useState({
+    name: 'Loading...',
+    phone: 'Loading...',
+    mail: 'Loading...',
+    birhDate: 'Loading...',
+  });
   const [balance, setBalance] = useState(0);
-  const [phone, setPhone] = useState('Loading...');
-  const [mail, setMail] = useState('Loading...');
-  const [birhDate, setBirthDate] = useState('Loading...');
-  const [name, setName] = useState('Loading...');
+  //  const [tableBalance, setTableBalance] = useState(0);
+
   const [cardNumber, setCardNumber] = useState('Loading...');
   const [transferStatus, setTransferStatus] = useState('');
 
+  const [isResponse, setIsResponse] = useState(true);
+
   const splitCardNumber = (cardNumber) => {
+    if (cardNumber.length !== 16) return cardNumber;
+
     cardNumber = cardNumber.replace(/\s/g, '');
 
     let groups = cardNumber.match(/.{1,4}/g);
@@ -35,10 +46,13 @@ function ProfileContent(props) {
           token: localStorage.getItem('token'),
         });
         console.log(info);
-        setName(info.data.user.name + ' ' + info.data.user.surname);
-        setPhone(info.data.user.phone_number);
-        setMail(info.data.user.email);
-        setBirthDate(info.data.user.birth_date.substring(0, 10));
+        setUserInfo({
+          name: info.data.user.name + ' ' + info.data.user.surname,
+          phone: info.data.user.phone_number,
+          mail: info.data.user.email,
+          birhDate: info.data.user.birth_date.substring(0, 10),
+        });
+
         setBalance(info.data.card.balance);
         setCardNumber(info.data.card.number);
         setTransfers(info.data.transfers);
@@ -58,7 +72,7 @@ function ProfileContent(props) {
   };
 
   const addTransaction = async () => {
-    if (ReceiverCard === cardNumber) {
+    if (ReceiverCard.split(' ').join('') === cardNumber) {
       setTransferStatus('You cannot send money to yourself!');
       return;
     }
@@ -66,24 +80,31 @@ function ProfileContent(props) {
       setTransferStatus('You cannot send more then you have!');
       return;
     }
+
+    setBalance(balance - Number(sum_transfer));
+
+    const newTransaction = {
+      ReceiverCard: ReceiverCard,
+      sum_transfer: sum_transfer,
+      balance: balance - Number(sum_transfer),
+    };
+
+    setTransfers([newTransaction, ...transfers]);
+
     await axios
       .post('http://localhost:3002/createTransfer', {
         SenderCard: cardNumber,
         ReceiverCard: ReceiverCard,
         sum_transfer: sum_transfer,
       })
-      .then((response) => {})
+      .then((response) => {
+        setIsResponse(true);
+        setTransferStatus(response.data.message);
+      })
       .catch((error) => {
+        setIsResponse(false);
         setTransferStatus(error.response.data.message);
       });
-    const newTransaction = {
-      ReceiverCard: ReceiverCard,
-      sum_transfer: sum_transfer,
-      balance: balance - Number(sum_transfer),
-    };
-    await setBalance(balance - Number(sum_transfer));
-    await setTransfers([newTransaction, ...transfers]);
-    console.log(transfers);
   };
 
   return (
@@ -95,16 +116,16 @@ function ProfileContent(props) {
         <div className='wrapper-info'>
           <div className='user-info'>
             <p className='text m5 bold'>
-              Name: <span className='text regular'>{name}</span>
+              Name: <span className='text regular'>{userInfo.name}</span>
             </p>
             <p className='text m5 bold'>
-              Phone: <span className='text regular'>{phone}</span>
+              Phone: <span className='text regular'>{userInfo.phone}</span>
             </p>
             <p className='text m5 bold'>
-              Birthdate: <span className='text regular'>{birhDate}</span>
+              Birthdate: <span className='text regular'>{userInfo.birhDate}</span>
             </p>
             <p className='text m5 bold'>
-              Mail: <span className='text regular'>{mail}</span>
+              Mail: <span className='text regular'>{userInfo.mail}</span>
             </p>
           </div>
         </div>
@@ -138,44 +159,39 @@ function ProfileContent(props) {
               Transfer
             </button>
           </div>
-          <p className='transferStatus'>{transferStatus}</p>
+          <p className={isResponse ? 'transferStatusConfirm' : 'transferStatusError'}>{transferStatus}</p>
         </div>
         <div className='transaction-table'>
           <table>
-            <thead>
+            <thead style={{ height: '3rem', overflow: 'hidden' }}>
               <tr>
                 <th>Card Number</th>
                 <th>Amount</th>
-                <th>Balance</th>
               </tr>
             </thead>
-            <tbody>
+
+            <tbody style={{ height: 'auto' }}>
               {transfers.map((transfer, index) => {
                 let transferCard;
                 let transferAmount;
+
                 if (String(transfer.ReceiverCard) === cardNumber) {
                   transferCard = String(transfer.SenderCard);
                   transferAmount = '+' + String(transfer.sum_transfer);
-                  return (
-                    <tr key={index}>
-                      <td>{transferCard}</td>
-                      <td>{transferAmount}$</td>
-                      <td>{transfer.balance}$</td>
-                    </tr>
-                  );
-                }
-                if (String(transfer.SenderCard) === cardNumber) {
-                  transferCard = String(transfer.SenderCard);
+                } else if (String(transfer.SenderCard) === cardNumber) {
+                  transferCard = String(transfer.ReceiverCard);
                   transferAmount = '-' + String(transfer.sum_transfer);
-                  return (
-                    <tr key={index}>
-                      <td>{transferCard}</td>
-                      <td>{transferAmount}$</td>
-                      <td>{transfer.balance}$</td>
-                    </tr>
-                  );
+                } else {
+                  transferCard = ReceiverCard;
+                  transferAmount = '-' + String(transfer.sum_transfer);
                 }
-                console.log(transfer);
+
+                return (
+                  <tr key={index}>
+                    <td>{transferCard}</td>
+                    <td>{transferAmount}$</td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>
