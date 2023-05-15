@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './header.css';
 import logo from '../../icons/header/logo.png';
 
-function Header() {
+function Header(props) {
+  const navigate = useNavigate();
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   const tokenExists = localStorage.getItem('token') !== null;
 
-  const logOut = () => {
+  const logOut = (event) => {
     localStorage.clear();
+    navigate('/');
   };
 
   const headerButtons = () => {
@@ -38,11 +40,35 @@ function Header() {
       );
     }
   };
+
+  const navItems = () => {
+    if (props.nav)
+      return (
+        <>
+          {' '}
+          <ul className='nav-items'>
+            <li className='nav-item' onClick={() => scrollToSection('Home')}>
+              Home
+            </li>
+            <li className='nav-item' onClick={() => scrollToSection('Instruction')}>
+              Instruction
+            </li>
+            <li className='nav-item' onClick={() => scrollToSection('About Us')}>
+              About Us
+            </li>
+            <li className='nav-item' onClick={() => scrollToSection('Support')}>
+              Contacts
+            </li>
+          </ul>
+        </>
+      );
+  };
   const handleMenuClick = () => {
     setShowBurgerMenu(!showBurgerMenu);
   };
 
   const scrollToSection = (sectionId) => {
+    navigate('/');
     const section = document.getElementById(sectionId);
     section.scrollIntoView({ behavior: 'auto' });
   };
@@ -60,20 +86,7 @@ function Header() {
       </div>
 
       <nav className={`nav ${showBurgerMenu ? 'active' : ''}`}>
-        <ul className='nav-items'>
-          <li className='nav-item' onClick={() => scrollToSection('Home')}>
-            Home
-          </li>
-          <li className='nav-item' onClick={() => scrollToSection('Instruction')}>
-            Instruction
-          </li>
-          <li className='nav-item' onClick={() => scrollToSection('About Us')}>
-            About Us
-          </li>
-          <li className='nav-item' onClick={() => scrollToSection('Support')}>
-            Contacts
-          </li>
-        </ul>
+        {navItems()}
         <div className='buttons-container'>{headerButtons()}</div>
       </nav>
     </header>
