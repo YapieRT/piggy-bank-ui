@@ -12,7 +12,7 @@ import './main-page.css';
 function MainPage() {
   return (
     <>
-      <Header nav={true} />
+      <Header nav={true} buttons={true} />
       <StartPage />
       <Tutorial />
       <Info />

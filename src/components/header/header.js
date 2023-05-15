@@ -15,13 +15,14 @@ function Header(props) {
   };
 
   const headerButtons = () => {
+    if (!props.buttons) return;
     if (tokenExists) {
       return (
         <>
           <Link to='/user#profile'>
             <button className='button'>Profile</button>
           </Link>
-          <Link to='/' onClick={logOut}>
+          <Link to='/user#login' onClick={logOut}>
             <button className='button logOut'>Log out</button>
           </Link>
         </>

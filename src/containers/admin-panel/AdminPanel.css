@@ -1,0 +1,97 @@
+.admin-panel {
+  flex: 1;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: #fff;
+  width: fit-content;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 15px;
+}
+
+.admin-panel-content {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+}
+
+.admin-panel-content h2,
+.admin-panel-content h4 {
+  color: #764b7d;
+  font-family: 'Livvic';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.admin-panel-content h4 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.admin-panel-form {
+  font-family: 'Livvic';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-panel-form .input-container label {
+  display: block;
+  line-height: 15px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.admin-panel-form .input-container input {
+  width: 400px;
+  padding: 10px;
+  gap: 10px;
+  height: 35px;
+  border: 1px solid #979797;
+  border-radius: 15px;
+  outline-color: #d68cd3;
+  color: #764b7d;
+}
+
+.admin-panel-form .loginStatus {
+  width: 400px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  gap: 10px;
+  height: 35px;
+  color: #764b7d;
+}
+
+.admin-panel-content .admin-panel-form .loginButton {
+  border-radius: 15px;
+  background-color: #d68cd3;
+  color: white;
+  font-size: 18px;
+  width: 450px;
+  max-width: 420px;
+  height: 60px;
+  transition: 0.5s;
+}
+
+.admin-panel-content .admin-panel-form .loginButton:hover {
+  background-color: #eba1e8;
+  color: #f7cffe;
+}

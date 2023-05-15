@@ -28,7 +28,7 @@ function UserPage() {
   }
   return (
     <>
-      <Header />
+      <Header buttons={true} />
       <div className='wrapper-user-content'>{activeContent}</div>
       <Footer getStartedFlag={false} />
     </>
