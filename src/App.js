@@ -4,7 +4,8 @@ import './App.sass';
 /* import Pages from './components/Pages'; */
 import MainPage from './containers/main-page/main-page';
 import UserPage from './containers/user-page/user-page';
-import AdminPanel from './containers/admin-panel/AdminPanel';
+
+import AdminPage from './containers/admin-panel/admin-page';
 
 function App() {
   document.title = 'PiggyBank';
@@ -14,7 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/user' element={<UserPage />} />
-          <Route path='/adminpanel' element={<AdminPanel />} />
+          <Route path='/adminpanel' element={<AdminPage />} />
         </Routes>
       </Router>
     </div>

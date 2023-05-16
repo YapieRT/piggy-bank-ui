@@ -20,11 +20,11 @@ function Footer({ getStartedFlag }) {
     ''
   );
   return (
-    <div className='footer'>
+    <footer className='footer'>
       {getStarted}
 
       <h3 className='copyright'>Copyright © 2023. PiggyBank. All rights reserved.</h3>
-    </div>
+    </footer>
   );
 }
 

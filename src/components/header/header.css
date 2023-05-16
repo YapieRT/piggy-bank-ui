@@ -69,7 +69,11 @@
   background-color: #eba1e8;
   color: #f7cffe;
 }
-
+.logOut:hover {
+  border: 1px solid #eba1e8 !important;
+  color: #eba1e8;
+  background-color: white;
+}
 .nav-item:hover {
   color: #dcb0e4;
 }
