@@ -73,14 +73,17 @@ function ProfileContent(props) {
 
   const addTransaction = async () => {
     if (ReceiverCard.split(' ').join('') === cardNumber) {
+      setIsResponse(false);
       setTransferStatus('You cannot send money to yourself!');
       return;
     }
     if (0 >= sum_transfer) {
+      setIsResponse(false);
       setTransferStatus('You cannot transfer negative amount!');
       return;
     }
     if (sum_transfer > balance) {
+      setIsResponse(false);
       setTransferStatus('You cannot send more then you have!');
       return;
     }
