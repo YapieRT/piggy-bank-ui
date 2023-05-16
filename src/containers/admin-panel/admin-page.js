@@ -19,6 +19,9 @@ function AdminPage() {
   const [cardNumber, setCardNumber] = useState('');
   const [amount, setAmount] = useState('');
 
+  const [isResponse, setIsResponse] = useState(true);
+  const [balanceUpdateStatus, setBalanceUpdateStatus] = useState('');
+
   const cardNumberChangeHandler = (event) => {
     setCardNumber(event.target.value);
   };
@@ -28,7 +31,7 @@ function AdminPage() {
 
   const [cards, setCards] = useState([]);
 
-  const passwordChangeHandler = (event) => {
+  const accessCodeChangeHandler = (event) => {
     setAccessCode(event.target.value);
   };
 
@@ -48,7 +51,27 @@ function AdminPage() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    setPanel(true);
+    if (accessCode == 'admin') setPanel(true);
+  };
+
+  const updateBalance = async (event) => {
+    event.preventDefault();
+    await axios
+      .post('http://localhost:3002/admin/updatebalance', {
+        cardNumber: cardNumber,
+        amount: Number(amount),
+      })
+      .then((response) => {
+        console.log(response);
+        setIsResponse(true);
+        setBalanceUpdateStatus(response.data.message);
+        setCards(cards);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsResponse(false);
+        setBalanceUpdateStatus(error.response.data.message);
+      });
   };
   const renderContent = () => {
     if (!panel)
@@ -62,7 +85,7 @@ function AdminPage() {
               <form className='admin-enter-form' onSubmit={submitHandler}>
                 <div className='input-container'>
                   <label>Access Code:</label>
-                  <input required type='password' placeholder='Write text here...' onChange={passwordChangeHandler} />
+                  <input required type='password' placeholder='Write text here...' onChange={accessCodeChangeHandler} />
                 </div>
                 <p className='enterStatus'>{enterStatus}</p>
                 <button className='enterButton' type='submit'>
@@ -107,7 +130,7 @@ function AdminPage() {
                   <span>Admin Tool</span>
                 </p>
               </div>
-              <form className='form'>
+              <form className='form' onSubmit={updateBalance}>
                 <div className='form-row'>
                   <div className='form-input'>
                     <label htmlFor='cardNumber'>Card Number:</label>
@@ -122,6 +145,7 @@ function AdminPage() {
                   <button className='form-btn insert'>Insert</button>
                   <button className='form-btn withdraw'>Withdraw</button>
                 </div>
+                <p className={isResponse ? 'UpdateConfirm' : 'UpdateError'}>{balanceUpdateStatus}</p>
               </form>
             </div>
             <div className='admin-table'>
@@ -142,10 +166,10 @@ function AdminPage() {
                     <th>Action Buttons</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style={{ height: 'auto' }}>
                   {cards.map((card, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         {' '}
                         <td style={{ textAlign: 'left' }}>{card.userId.name + ' ' + card.userId.surname}</td>
                         <td>{card.userId.phone_number}</td>

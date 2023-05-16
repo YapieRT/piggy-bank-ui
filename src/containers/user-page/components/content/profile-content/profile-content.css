@@ -1,11 +1,9 @@
-/* Контейнер для всего содержимого */
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Блоки операций, информации о пользователе и кнопок */
 .data-operations,
 .user-info,
 .wrapper-btn {
@@ -14,9 +12,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #fdf3ff;
-  /*  fdf3ff */
   border-radius: 15px;
-  /* margin-bottom: 10px; */
 }
 
 .data-operations .transferStatusError {
@@ -44,21 +40,17 @@
   margin-bottom: 5px;
 }
 
-/* Общий блок */
 .general {
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   padding: 5px 0;
 }
 
-/* Блок данных */
 .data {
   padding: 5px 0;
   width: 100%;
 }
 
-/* Обертка для информации */
 .wrapper-info {
   display: flex;
   flex-direction: column;
@@ -67,7 +59,6 @@
   width: 100%;
 }
 
-/* Изображение в карточке */
 .card-img {
   width: 100%;
   margin-right: 10px;
@@ -78,7 +69,6 @@
   height: auto;
 }
 
-/* Блок баланса пользователя */
 .user-balance {
   display: flex;
   flex-direction: column;
@@ -89,12 +79,9 @@
   margin-bottom: 5px;
 }
 
-/* Информация о пользователе и кнопки */
-
 .user-info,
 .wrapper-btn {
   width: 100%;
-  /* margin: auto; */
   padding: 10px 0;
 }
 
@@ -105,7 +92,6 @@
   padding-left: 20px;
 }
 
-/* Текстовые элементы */
 .text {
   margin: 5px 0;
   padding: 0;
@@ -127,14 +113,12 @@
   font-weight: 400;
 }
 
-/* Блок операции перевода */
 .transfer-operation {
   display: flex;
   padding: 15px;
   width: 100%;
 }
 
-/* Поля ввода */
 .input {
   padding: 10px;
   gap: 10px;
@@ -147,13 +131,11 @@
   border-radius: 15px;
 }
 
-/* Обертка для кнопок */
 .wrapper-btn {
   padding: 10px;
   margin-top: 5px;
 }
 
-/* Кнопки */
 .btn.transfer,
 .btn.logout {
   padding: 10px;
@@ -176,7 +158,6 @@
   background: #f9d3ff;
 }
 
-/* Таблица */
 .transaction-table {
   margin-top: 10px;
   border-radius: 10px;
@@ -207,7 +188,6 @@
   transition: background-color 0.25s ease;
 }
 
-/* Кнопка удаления */
 .btn.delete {
   background: none;
   border: none;
@@ -218,7 +198,6 @@
   color: #d68cd3;
 }
 
-/* Адаптация для мобильных устройств */
 @media screen and (max-width: 768px) {
   .general {
     width: 100%;

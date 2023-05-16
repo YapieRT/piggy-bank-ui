@@ -195,23 +195,51 @@
   color: #eba1e8;
   background-color: white;
 }
-
+.wrapper-admin-content .admin-operations .form .UpdateConfirm,
+.wrapper-admin-content .admin-operations .form .UpdateError {
+  width: 400px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 15px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  font-size: 18px;
+}
+.wrapper-admin-content .admin-operations .form .UpdateError {
+  color: #ba4141;
+  background: #e9a6a6;
+}
+.wrapper-admin-content .admin-operations .form .UpdateConfirm {
+  color: #38b619;
+  background: #a6e9ac;
+}
 /* TABLE */
 
 .admin-table {
   margin-top: 10px;
   border-radius: 10px;
-  overflow: hidden;
   width: 100%;
 }
 
 .admin-table table {
   width: 100%;
+  height: 100px;
+  overflow: auto;
   border-collapse: collapse;
 }
 
 .admin-table td button {
   border: none;
+  transition: 0.5s;
+  padding: 5px;
+}
+.admin-table td button:hover {
+  border: none;
+  transition: 0.5s;
+  border-radius: 15px;
+  background-color: #f8d4ff;
 }
 
 .admin-table th,
