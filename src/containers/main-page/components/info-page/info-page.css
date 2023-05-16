@@ -1,41 +1,41 @@
 .info-page {
-    padding: 30px;
+  padding: 30px;
 }
 
 .info-page .title,
 .info-page .subtitle {
-    font-weight: 600;
-    text-transform: capitalize;
-    text-align: center;
-    color: #5D3D63;
+  font-weight: 600;
+  text-transform: capitalize;
+  text-align: center;
+  color: #5d3d63;
 }
 
 .info-page .title {
-    font-size: 32px;
+  font-size: 32px;
 }
 
 .info-page .subtitle {
-    font-size: 20px;
-    max-width: 100vh;
-    margin: 0 auto;
+  font-size: 20px;
+  max-width: 60vw;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 769px) {
-    .info-page .title {
-        font-size: 28px;
-    }
+  .info-page .title {
+    font-size: 28px;
+  }
 
-    .info-page .subtitle {
-        font-size: 16px;
-    }
+  .info-page .subtitle {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 426px) {
-    .info-page .title {
-        font-size: 24px;
-    }
+  .info-page .title {
+    font-size: 24px;
+  }
 
-    .info-page .subtitle {
-        font-size: 16px;
-    }
+  .info-page .subtitle {
+    font-size: 16px;
+  }
 }

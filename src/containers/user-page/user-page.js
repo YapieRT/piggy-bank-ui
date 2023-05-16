@@ -29,6 +29,7 @@ function UserPage() {
   return (
     <>
       <Header buttons={true} />
+      <div style={{ marginBottom: '10px' }}></div>
       <div className='wrapper-user-content'>{activeContent}</div>
       <Footer getStartedFlag={false} />
     </>

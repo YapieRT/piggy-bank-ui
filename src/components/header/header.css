@@ -122,7 +122,7 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: -50%;
+    top: -700px;
     left: 0;
     width: 100%;
     background-color: #fff;
@@ -160,22 +160,11 @@
     padding: 5px;
   }
 
-  /*     .nav-item a {
-        display: flex;
-        padding: 10px;
-        color: #333;
-        text-decoration: none;
-    } */
-
   .buttons-container {
     margin-top: 20px;
     text-align: center;
   }
 }
-
-/* @media screen and (max-width: 376px) {
-    .nav
-} */
 
 @media screen and (max-width: 426px) {
   .nav .nav-items,

@@ -1,24 +1,13 @@
-/* html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
- */
 .footer {
-  /*   margin-top: auto; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /*   margin: 0; */
   padding: 30px;
+  margin: 0;
   background-color: #fdf3ff;
   text-align: center;
   margin-top: 10px;
-  position: absolute;
-  width: 100%
-  bottom : 0;
 }
 
 .footer .nav-items {

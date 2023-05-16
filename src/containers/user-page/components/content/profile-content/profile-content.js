@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function ProfileContent(props) {
+  const ip = 'http://localhost';
   const navigate = useNavigate();
   document.title = 'PiggyBank - Profile';
   if (!localStorage.getItem('token')) navigate('/');
@@ -20,7 +21,6 @@ function ProfileContent(props) {
     birhDate: 'Loading...',
   });
   const [balance, setBalance] = useState(0);
-  //  const [tableBalance, setTableBalance] = useState(0);
 
   const [cardNumber, setCardNumber] = useState('Loading...');
   const [transferStatus, setTransferStatus] = useState('');
@@ -42,7 +42,7 @@ function ProfileContent(props) {
   useEffect(() => {
     const getInfo = async () => {
       try {
-        const info = await axios.post('http://localhost:3002/getTransfersById', {
+        const info = await axios.post(`${ip}:3002/getTransfersById`, {
           token: localStorage.getItem('token'),
         });
         console.log(info);
@@ -76,6 +76,10 @@ function ProfileContent(props) {
       setTransferStatus('You cannot send money to yourself!');
       return;
     }
+    if (0 >= sum_transfer) {
+      setTransferStatus('You cannot transfer negative amount!');
+      return;
+    }
     if (sum_transfer > balance) {
       setTransferStatus('You cannot send more then you have!');
       return;
@@ -92,7 +96,7 @@ function ProfileContent(props) {
     setTransfers([newTransaction, ...transfers]);
 
     await axios
-      .post('http://localhost:3002/createTransfer', {
+      .post(`${ip}:3002/createTransfer`, {
         SenderCard: cardNumber,
         ReceiverCard: ReceiverCard,
         sum_transfer: sum_transfer,
@@ -108,7 +112,7 @@ function ProfileContent(props) {
   };
 
   return (
-    <div className='content'>
+    <div className='content-profile'>
       <div className='general'>
         <div className='card-img'>
           <img src={card} alt='' />

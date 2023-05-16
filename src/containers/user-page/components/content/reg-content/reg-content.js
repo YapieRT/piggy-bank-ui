@@ -10,6 +10,7 @@ import { RenderStepOne, RenderStepTwo, RenderStepThree, RenderStepFour } from '.
 import './reg-content.css';
 
 const RegistrationForm = () => {
+  const ip = 'http://localhost';
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -55,7 +56,7 @@ const RegistrationForm = () => {
 
   const handleFinish = async () => {
     try {
-      const signupResponse = await axios.post('http://localhost:3002/signup', { ...userData });
+      const signupResponse = await axios.post(`${ip}:3002/signup`, { ...userData });
       const responseData = signupResponse.data;
       setSignUpResponseData(responseData);
     } catch (error) {
@@ -65,7 +66,7 @@ const RegistrationForm = () => {
 
   const handleFormDataNext = async () => {
     await axios
-      .post('http://localhost:3002/existenceCheck', { ...userData })
+      .post(`${ip}:3002/existenceCheck`, { ...userData })
       .then((response) => {
         setRegistrationStatus('');
         setRegistrationErrors([]);
@@ -98,7 +99,7 @@ const RegistrationForm = () => {
       if (signUpResponseData && Object.keys(signUpResponseData).length !== 0) {
         localStorage.setItem('token', signUpResponseData.token);
         try {
-          await axios.post('http://localhost:3002/create-card', {
+          await axios.post(`${ip}:3002/create-card`, {
             userId: signUpResponseData._id,
             cardType: cardType,
             cardColor: color,
