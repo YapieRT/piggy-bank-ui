@@ -16,6 +16,9 @@ body {
   background-color: #fdf3ff;
   text-align: center;
   margin-top: 10px;
+  position: absolute;
+  width: 100%
+  bottom : 0;
 }
 
 .footer .nav-items {
